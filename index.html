@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="A Victorian London phantom-thief interactive letter and mystery introduction." />
+<meta name="theme-color" content="#0b0e13" />
+<title>The Shadows of the Fog City — Night's Letter</title>
+<style>
+:root{
+  --bg:#0a0c10;
+  --paper:#f5f3ee;
+  --paper-deep:#e6e1d7;
+  --ink:#2b2119;
+  --ink-soft:rgba(72,58,45,.62);
+  --gold:#c49d5d;
+  --gold-deep:#8f6a31;
+  --shadow:rgba(0,0,0,.56);
+}
+*{box-sizing:border-box}
+html,body{
+  margin:0;padding:0;min-height:100%;
+  background:
+    radial-gradient(circle at 50% 14%, rgba(170,183,204,.09), transparent 28%),
+    linear-gradient(180deg,#171c25 0%,#0b0e13 55%,#06080b 100%);
+  color:#ece6da;
+  font-family:Georgia,"Times New Roman","Noto Serif KR","Malgun Gothic",serif;
+  overflow-x:hidden;
+}
+body{position:relative}
+button,a{font:inherit;color:inherit}
+button{background:none;border:0;padding:0}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.stage{position:relative;min-height:100vh;isolation:isolate;overflow:hidden}
+.city{
+  position:fixed;inset:auto 0 0;height:41vh;z-index:-5;pointer-events:none;opacity:.44;
+  background:
+    linear-gradient(to top,rgba(0,0,0,.94),rgba(0,0,0,.14) 72%,transparent),
+    repeating-linear-gradient(90deg,transparent 0 46px,rgba(0,0,0,.78) 46px 82px,transparent 82px 116px);
+  clip-path:polygon(
+    0 48%,5% 48%,5% 24%,8% 24%,8% 41%,14% 41%,14% 12%,17% 12%,17% 44%,23% 44%,23% 31%,27% 31%,27% 49%,
+    33% 49%,33% 17%,37% 17%,37% 45%,44% 45%,44% 26%,47% 26%,47% 48%,55% 48%,55% 14%,59% 14%,59% 45%,
+    66% 45%,66% 34%,70% 34%,70% 52%,76% 52%,76% 21%,81% 21%,81% 47%,87% 47%,87% 35%,91% 35%,91% 49%,
+    96% 49%,96% 26%,100% 26%,100% 100%,0 100%);
+}
+.fog{position:fixed;border-radius:50%;background:radial-gradient(circle,rgba(238,242,248,.13),rgba(238,242,248,.025) 50%,transparent 72%);filter:blur(36px);pointer-events:none;z-index:-3;animation:fog 26s ease-in-out infinite alternate}
+.fog.one{width:50vw;height:30vw;left:-10vw;top:8vh}
+.fog.two{width:44vw;height:28vw;right:-12vw;top:38vh;animation-duration:32s}
+.fog.three{width:42vw;height:26vw;left:28vw;bottom:-8vh;animation-duration:37s}
+.rain{position:fixed;inset:0;pointer-events:none;z-index:-2;opacity:.16;background-image:repeating-linear-gradient(112deg,transparent 0 17px,rgba(255,255,255,.10) 18px,transparent 19px 39px);animation:rain 1.15s linear infinite}
+@keyframes fog{from{transform:translate3d(-3vw,0,0) scale(.96)}to{transform:translate3d(4vw,-2vh,0) scale(1.08)}}
+@keyframes rain{from{background-position:0 0}to{background-position:28px 36px}}
+@keyframes arrive{
+  0%{opacity:0;transform:translate3d(54vw,-24vh,0) rotate(14deg) scale(.42);filter:blur(8px)}
+  60%{opacity:1;transform:translate3d(-2vw,2vh,0) rotate(-2deg) scale(1.03);filter:blur(0)}
+  100%{transform:translate3d(0,0,0) rotate(0) scale(1)}
+}
+@keyframes reveal{to{opacity:1;transform:translateY(0)}}
+@keyframes waxTap{0%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(.96)}100%{transform:translate(-50%,-50%) scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-2px)}75%{transform:translateX(2px)}}
+
+#intro{min-height:100vh;display:grid;place-items:center;padding:28px 16px;transition:opacity .7s ease,visibility .7s ease}
+#intro.hidden{opacity:0;visibility:hidden;pointer-events:none;position:absolute;inset:0}
+.intro-note{position:absolute;top:22px;left:50%;transform:translateX(-50%);text-align:center;color:#c4b8a2;font-size:11px;letter-spacing:.28em;text-transform:uppercase;opacity:.84}
+.intro-note small{display:block;margin-top:4px;color:#988d7c;font-size:10px;letter-spacing:.02em;text-transform:none}
+
+.envelope-wrap{width:min(760px,95vw);perspective:1600px;animation:arrive 1.9s cubic-bezier(.22,.8,.22,1) both}
+.envelope{position:relative;width:100%;aspect-ratio:1.58/1;filter:drop-shadow(0 32px 40px rgba(0,0,0,.58))}
+.envelope-back,.envelope-front,.envelope-flap{position:absolute;inset:0;border-radius:16px}
+.envelope-back{
+  background:
+    radial-gradient(circle at 16% 0%, rgba(255,255,255,.24), transparent 18%),
+    linear-gradient(145deg,#faf9f6 0%,#ece8e1 58%,#e2ddd5 100%);
+  border:1px solid rgba(70,49,29,.28);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.48),
+    inset 0 -22px 24px rgba(107,78,40,.08),
+    0 4px 0 rgba(94,70,41,.12);
+}
+.envelope-back::before{content:"";position:absolute;inset:16px;border:1px solid rgba(97,72,43,.10);border-radius:12px;pointer-events:none}
+.envelope-back::after{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.34;
+  background:
+    linear-gradient(115deg,transparent 18%, rgba(255,255,255,.22) 20%, transparent 22%),
+    radial-gradient(circle at 78% 26%, rgba(120,90,52,.10), transparent 18%),
+    radial-gradient(circle at 30% 74%, rgba(120,90,52,.08), transparent 18%);
+}
+.envelope-front{
+  z-index:3;pointer-events:none;overflow:hidden;
+  background:
+    linear-gradient(34deg,transparent 49.2%,rgba(130,130,130,.10) 50%,transparent 50.8%),
+    linear-gradient(-34deg,transparent 49.2%,rgba(130,130,130,.10) 50%,transparent 50.8%),
+    linear-gradient(180deg,transparent 46%,rgba(245,243,238,.99) 46%);
+  clip-path:polygon(0 40%,50% 84%,100% 40%,100% 100%,0 100%);
+  border:1px solid rgba(62,45,28,.14);
+}
+.envelope-flap{
+  z-index:4;transform-origin:top center;
+  background:linear-gradient(150deg,#fbfaf7,#ebe7df 66%,#ddd8d0);
+  clip-path:polygon(0 0,100% 0,50% 67%);
+  border-top:1px solid rgba(67,49,31,.22);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.45);
+  transition:transform 1s cubic-bezier(.2,.74,.22,1),z-index 0s .48s;
+}
+.envelope.open .envelope-flap{transform:rotateX(180deg);z-index:1}
+
+.letter-sheet{
+  position:absolute;left:7%;right:7%;top:7%;min-height:86%;max-height:76vh;overflow:auto;
+  z-index:2;color:var(--ink);
+  background:
+    radial-gradient(circle at 14% 8%, rgba(255,255,255,.25), transparent 18%),
+    radial-gradient(circle at 86% 18%, rgba(110,110,110,.05), transparent 18%),
+    linear-gradient(180deg,#fbfaf7 0%,#f0ede7 100%);
+  box-shadow:
+    0 18px 30px rgba(38,24,12,.22),
+    inset 0 1px 0 rgba(255,255,255,.48),
+    inset 0 0 65px rgba(140,103,53,.08);
+  padding:52px clamp(28px,5vw,58px) 42px;
+  transform:translateY(34%) scale(.92);opacity:0;
+  transition:transform 1.05s cubic-bezier(.2,.74,.22,1) .35s,opacity .55s ease .42s,max-height .9s ease .35s;
+}
+.letter-sheet::after{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.22;background:
+  radial-gradient(circle at 20% 78%, rgba(100,100,100,.04), transparent 14%),
+  linear-gradient(90deg, transparent, rgba(255,255,255,.10), transparent 72%),
+  repeating-linear-gradient(180deg, rgba(120,120,120,.018) 0 1px, transparent 1px 34px);
+}
+.envelope.open .letter-sheet{z-index:6;transform:translateY(-10%) scale(1);opacity:1;max-height:84vh}
+
+.letter-head{margin-bottom:26px}
+.letter-rule{width:84px;height:1px;margin:0 auto;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+
+.line{margin:0 0 14px}
+.en{
+  font-family:"Lucida Handwriting","Apple Chancery","URW Chancery L","Brush Script MT","Segoe Script","Times New Roman",cursive;
+  font-size:clamp(23px,3vw,31px);
+  line-height:1.45;color:#2b2119;letter-spacing:.01em;
+}
+.ko{
+  margin-top:3px;
+  font-size:clamp(11px,1.5vw,13px);
+  line-height:1.72;color:var(--ink-soft);letter-spacing:.01em;
+}
+.mark{
+  display:inline-grid;place-items:center;min-width:1ch;
+  color:inherit;font-weight:700;cursor:pointer;
+  transition:transform .2s ease,opacity .2s ease;
+}
+.mark:hover{transform:translateY(-1px)}
+.mark.done{opacity:.42}
+.mark.error{animation:shake .25s linear 2}
+.hint{
+  margin-top:18px;
+  text-align:center;
+  color:rgba(61,43,28,.72);
+  font-size:12px;
+  line-height:1.8;
+  letter-spacing:.02em;
+}
+.hint strong{
+  font-weight:600;
+}
+.hint .ko{
+  margin-top:2px;
+  color:rgba(72,58,45,.56);
+}
+.archive-reveal{margin-top:20px;padding-top:16px;border-top:1px dashed rgba(85,63,34,.20);text-align:center;opacity:0;transform:translateY(8px);pointer-events:none;transition:all .45s ease}
+.archive-reveal.show{opacity:1;transform:translateY(0);pointer-events:auto}
+.archive-link{display:inline-flex;flex-direction:column;align-items:center;gap:4px;text-decoration:none;color:#3d2b1c}
+.archive-link::before{content:"";width:160px;height:1px;background:linear-gradient(90deg,transparent,#8c7049,transparent)}
+.archive-link strong{font-size:20px;font-weight:500;letter-spacing:.14em;text-transform:uppercase}
+.archive-link span{font-size:11px;color:rgba(61,43,28,.60)}
+.sign{margin-top:6px;text-align:right;font-family:"Lucida Handwriting","Apple Chancery","URW Chancery L","Brush Script MT","Segoe Script",cursive;font-size:34px;color:#3a2a1f}
+
+.seal-btn{
+  position:absolute;left:50%;top:53%;z-index:7;transform:translate(-50%,-50%) rotate(-4deg);
+  width:144px;height:144px;cursor:pointer;
+  border-radius:0;
+  background:url("assets/ashcroft-seal.png") center/contain no-repeat;
+  box-shadow:0 16px 26px rgba(47,23,5,.22);
+  transition:transform .3s ease,filter .25s ease,opacity .5s ease;
+}
+.seal-btn::before{
+  content:none;
+}
+.seal-btn::after{
+  content:"Break the seal";position:absolute;left:50%;top:122%;transform:translateX(-50%);
+  color:#d8cebd;font-size:10px;letter-spacing:.25em;text-transform:uppercase;white-space:nowrap;opacity:.84
+}
+.seal-btn:hover{transform:translate(-50%,-50%) rotate(-4deg) scale(1.04);filter:brightness(1.03)}
+.seal-btn:active{animation:waxTap .22s ease}
+.seal-btn:focus-visible{outline:2px solid rgba(247,230,203,.95);outline-offset:6px}
+.seal-btn svg{display:none}
+.envelope.open .seal-btn{opacity:0;pointer-events:none;transform:translate(-50%,-50%) scale(.55)}
+
+#archive{display:none;min-height:100vh;opacity:0;transform:translateY(20px)}
+#archive.visible{display:block;animation:reveal .8s ease forwards}
+.archive-shell{width:min(1100px,calc(100% - 28px));margin:0 auto;padding:26px 0 80px}
+.archive-top{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:22px;color:#c2b6a0;font-size:11px;letter-spacing:.24em;text-transform:uppercase}
+.return-btn{border:1px solid rgba(204,187,156,.28);border-radius:999px;padding:10px 15px;cursor:pointer;color:#ddd3c3;background:rgba(255,255,255,.04);transition:.2s}
+.return-btn:hover{background:rgba(255,255,255,.09);border-color:rgba(204,187,156,.52)}
+.archive-card{
+  border:1px solid rgba(190,165,119,.25);border-radius:28px;overflow:hidden;
+  background:
+    radial-gradient(circle at 86% 10%, rgba(132,27,43,.12), transparent 24%),
+    linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.015)),
+    #0f131a;
+  box-shadow:0 28px 72px rgba(0,0,0,.44);
+}
+.hero{
+  position:relative;min-height:430px;padding:clamp(34px,7vw,78px);display:flex;align-items:flex-end;
+  border-bottom:1px solid rgba(190,165,119,.16);
+  background:
+    linear-gradient(90deg,rgba(6,8,12,.96),rgba(6,8,12,.62) 55%,rgba(6,8,12,.18)),
+    radial-gradient(circle at 80% 30%,rgba(168,178,203,.18),transparent 20%),
+    linear-gradient(145deg,#171c25,#090b10 70%);
+}
+.hero::after{content:"NIGHT";position:absolute;right:clamp(28px,7vw,82px);top:48%;transform:translateY(-50%);color:rgba(187,160,109,.06);font-size:clamp(66px,14vw,180px);letter-spacing:.18em;font-style:italic;pointer-events:none}
+.hero-copy{position:relative;z-index:1;max-width:700px}
+.hero-label{color:#bda778;font-size:11px;letter-spacing:.32em;text-transform:uppercase}
+.hero h1{margin:12px 0 14px;font-size:clamp(42px,8vw,82px);line-height:1.02;font-weight:500;letter-spacing:.05em}
+.hero p{margin:0;color:#cbc3b6;font-size:clamp(14px,2.2vw,18px);line-height:1.9}
+.hero p .ko{font-size:13px;color:rgba(203,195,182,.55);margin-top:8px}
+
+.archive-content{padding:clamp(24px,5vw,58px)}
+.section{display:grid;grid-template-columns:190px minmax(0,1fr);gap:clamp(22px,5vw,58px);padding:34px 0;border-bottom:1px solid rgba(190,165,119,.14)}
+.section:last-child{border-bottom:0}
+.section-index{color:#aa966f;font-size:11px;letter-spacing:.26em;text-transform:uppercase}
+.section h2{margin:0 0 14px;font-size:clamp(26px,4vw,42px);font-weight:500;letter-spacing:.04em}
+.section p{margin:0;color:#c8c1b6;line-height:1.9;font-size:15px}
+.section p + p{margin-top:12px}
+.section p .ko{font-size:13px;color:rgba(200,193,182,.55);margin-top:8px}
+.grid2,.grid4{display:grid;gap:14px;margin-top:18px}
+.grid2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.grid4{grid-template-columns:repeat(2,minmax(0,1fr))}
+.info-box{min-height:154px;padding:20px;border:1px solid rgba(190,165,119,.18);border-radius:16px;background:rgba(255,255,255,.028)}
+.info-box h3{margin:0 0 10px;color:#e5dccb;font-size:18px;font-weight:500}
+.info-box .meta{margin-bottom:10px;color:#aa946a;font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+.info-box p{color:#bdb6aa;font-size:14px;line-height:1.8}
+.red-seal{
+  width:84px;height:84px;margin-top:20px;border-radius:48% 52% 46% 54% / 50% 44% 56% 50%;
+  background:radial-gradient(circle at 30% 22%, rgba(255,239,183,.95) 0 9%, rgba(231,197,122,.88) 14%, rgba(195,149,77,.92) 31%, rgba(139,101,46,.98) 64%, rgba(94,63,24,1) 100%);
+  box-shadow:inset 0 7px 12px rgba(255,255,255,.16), inset 0 -10px 14px rgba(78,50,17,.24), 0 10px 24px rgba(74,9,17,.20);
+  position:relative;
+}
+.red-seal::before{
+  content:"";position:absolute;inset:9px;border-radius:50%;
+  background:radial-gradient(circle at 50% 45%, rgba(215,173,95,.86), rgba(158,119,55,.92) 68%, rgba(110,74,28,.96) 100%);
+  box-shadow:inset 0 0 0 2px rgba(103,71,28,.48), inset 0 0 0 7px rgba(215,189,130,.18), inset 0 7px 10px rgba(255,255,255,.10), inset 0 -8px 10px rgba(61,38,12,.20);
+}
+@media (max-width:760px){
+  .envelope-wrap{width:min(650px,96vw)}
+  .letter-sheet{left:4%;right:4%;padding:30px 24px}
+  .envelope.open .letter-sheet{transform:translateY(-12%) scale(1)}
+  .archive-top{align-items:flex-start;flex-direction:column}
+  .section{grid-template-columns:1fr;gap:10px}
+  .grid2,.grid4{grid-template-columns:1fr}
+}
+@media (max-width:520px){
+  .envelope{aspect-ratio:1.16/1}
+  .seal-btn{width:114px;height:114px}
+  .envelope.open .letter-sheet{top:2%;transform:translateY(-3%) scale(1);max-height:92vh}
+  .archive-content{padding:20px}
+  .hero{padding:34px 24px;min-height:430px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+
+/* persistent background music */
+.music-toggle{
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  z-index:1000;
+  width:46px;
+  height:46px;
+  display:grid;
+  place-items:center;
+  border:1px solid rgba(222,210,188,.26);
+  border-radius:50%;
+  background:rgba(10,12,16,.72);
+  color:#e4d8c4;
+  box-shadow:0 10px 28px rgba(0,0,0,.32), inset 0 1px 0 rgba(255,255,255,.06);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  cursor:pointer;
+  opacity:0;
+  pointer-events:none;
+  transform:translateY(8px);
+  transition:opacity .35s ease,transform .35s ease,background .2s ease,border-color .2s ease;
+}
+.music-toggle.ready{
+  opacity:1;
+  pointer-events:auto;
+  transform:translateY(0);
+}
+.music-toggle:hover{
+  background:rgba(22,25,32,.88);
+  border-color:rgba(222,210,188,.48);
+}
+.music-toggle:focus-visible{
+  outline:2px solid rgba(238,224,198,.85);
+  outline-offset:4px;
+}
+.music-toggle .music-icon{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:19px;
+  line-height:1;
+  transform:translateY(-1px);
+}
+.music-toggle.muted .music-icon{opacity:.42}
+.music-toggle.muted::after{
+  content:"";
+  position:absolute;
+  width:24px;
+  height:1px;
+  background:#d7c7ad;
+  transform:rotate(-42deg);
+  opacity:.78;
+}
+@media (max-width:520px){
+  .music-toggle{right:12px;bottom:12px;width:42px;height:42px}
+}
+
+</style>
+</head>
+<body>
+
+<audio id="bgMusic" loop preload="auto" playsinline>
+  <source src="assets/moonlit-phantom.mp3" type="audio/mpeg" />
+</audio>
+<button class="music-toggle" id="musicToggle" type="button" aria-label="배경음악 음소거" title="Background music">
+  <span class="music-icon" aria-hidden="true">♪</span>
+</button>
+
+<div class="stage">
+  <div class="city" aria-hidden="true"></div>
+  <div class="fog one" aria-hidden="true"></div>
+  <div class="fog two" aria-hidden="true"></div>
+  <div class="fog three" aria-hidden="true"></div>
+  <div class="rain" aria-hidden="true"></div>
+
+  <section id="intro" aria-labelledby="letterArea">
+    <div class="intro-note">
+      A sealed letter drifts through the London fog
+      <small>런던의 안개를 가르며 봉인된 편지 한 통이 도착합니다.</small>
+    </div>
+
+    <div class="envelope-wrap">
+      <div class="envelope" id="envelope">
+        <div class="envelope-back"></div>
+
+        <article class="letter-sheet" id="letterArea">
+          <header class="letter-head">
+            <div class="letter-rule"></div>
+          </header>
+
+          <div class="line">
+            <div class="en">The Winter Lio<button class="mark" data-step="1" aria-label="first letter N">n</button>'s Eye rests in Blackwood Hall.</div>
+            <div class="ko">겨울사자의 눈은 블랙우드 홀에 놓여 있습니다.</div>
+          </div>
+
+          <div class="line">
+            <div class="en">Its heart is set in <button class="mark" data-step="2" aria-label="second letter I">i</button>vory and old gold.</div>
+            <div class="ko">그 심장은 상아와 오래된 금속에 박혀 있습니다.</div>
+          </div>
+
+          <div class="line">
+            <div class="en">A <button class="mark" data-step="3" aria-label="third letter G">g</button>lass case keeps it from unworthy hands.</div>
+            <div class="ko">유리 진열장은 그 유물을 합당치 않은 손에서 지키고 있습니다.</div>
+          </div>
+
+          <div class="line">
+            <div class="en">At midnight, the west wing will fall <button class="mark" data-step="4" aria-label="fourth letter H">h</button>ush.</div>
+            <div class="ko">자정이 되면 서관은 조용해질 것입니다.</div>
+          </div>
+
+          <div class="line">
+            <div class="en">The last bell will mark my <button class="mark" data-step="5" aria-label="fifth letter T">t</button>aking of it.</div>
+            <div class="ko">마지막 종소리가 울리면, 나는 그것을 가져가겠지요.</div>
+          </div>
+
+          <div class="line">
+            <div class="en">If you are ready, shall we step into the night?</div>
+            <div class="ko">준비가 되셨다면, 함께 밤으로 출발해볼까요?</div>
+          </div>
+
+          <div class="hint">
+            <strong>Hint: Follow me.</strong>
+            <div class="ko">힌트: 저를 따라오세요.</div>
+          </div>
+
+          <div class="sign">— Night</div>
+
+          <div class="archive-reveal" id="archiveReveal">
+            <a href="#archive" class="archive-link" id="archiveLink">
+              <strong>Begin the Investigation</strong>
+              <span>수사를 시작하시겠습니까?</span>
+            </a>
+          </div>
+
+        </article>
+
+        <div class="envelope-front"></div>
+        <div class="envelope-flap"></div>
+
+        <button class="seal-btn" id="sealButton" type="button" aria-label="Break the wax seal">
+          <span class="sr-only">왁스 봉인을 풀고 편지를 엽니다.</span>
+          <svg viewBox="0 0 100 100" aria-hidden="true">
+            <g fill="none" stroke="rgba(123,91,39,.96)" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+              <ellipse cx="50" cy="50" rx="35" ry="34"/>
+              <path d="M49 17c8 0 13 4 18 8 7 7 12 14 15 24-2 6-5 11-9 16-8 10-16 14-24 18-10-4-18-9-25-18-4-5-7-10-9-16 3-10 8-17 15-24 5-4 10-8 19-8z" opacity=".17"/>
+              <path d="M22 48c5-17 18-24 27-26"/>
+              <path d="M78 48c-5-17-18-24-27-26"/>
+              <path d="M29 66c7-2 14-8 18-17"/>
+              <path d="M71 66c-7-2-14-8-18-17"/>
+              <path d="M36 26c5 4 10 6 14 7"/>
+              <path d="M64 26c-5 4-10 6-14 7"/>
+              <path d="M44 39l6-5 6 5v4H44z"/>
+              <path d="M47 43h6v6h6c0 12-8 21-12 24-4-3-12-12-12-24h6v-6h6z"/>
+              <path d="M50 18c-2 6-1 11 0 15"/>
+            </g>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <main id="archive" aria-labelledby="archiveTitle">
+    <div class="archive-shell">
+      <div class="archive-top">
+        <span>Scotland Yard · Restricted Dossier · The Fog City Files</span>
+        <button class="return-btn" id="returnButton" type="button">Return to the Letter · 편지로 돌아가기</button>
+      </div>
+
+      <article class="archive-card">
+        <header class="hero">
+          <div class="hero-copy">
+            <div class="hero-label">The Shadows of the Fog City</div>
+            <h1 id="archiveTitle">The Shadows of the Fog City</h1>
+            <p>
+              Late nineteenth-century London. Rain dims the gaslights. A silver-haired thief leaves a golden seal at every empty case.
+              <span class="ko">19세기 말 런던. 비가 가스등을 흐리고, 은발의 괴도는 빈 진열대마다 황금빛 봉인을 남깁니다.</span>
+            </p>
+          </div>
+        </header>
+
+        <div class="archive-content">
+          <section class="section">
+            <div class="section-index">01 · World</div>
+            <div>
+              <h2>Twelve Relics, One Phantom</h2>
+              <p>
+                The Ashcroft family fell under a charge of treason. Twelve heirlooms were scattered across London.
+                <span class="ko">애시크로프트 가문은 반역의 누명 아래 몰락했고, 열두 점의 유물은 런던 전역으로 흩어졌습니다.</span>
+              </p>
+              <p>
+                The thief called Night retrieves them one by one.
+                <span class="ko">나이트라 불리는 괴도는 그것들을 하나씩 회수합니다.</span>
+              </p>
+              <div class="red-seal" aria-hidden="true"></div>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="section-index">02 · Mystery</div>
+            <div>
+              <h2>Two Silver-Haired Men</h2>
+              <p>
+                Night and Arthur Whitlock share silver hair, a similar frame, and a habit of using the left hand.
+                <span class="ko">나이트와 아서 휘트록은 은발, 비슷한 체격, 그리고 왼손을 쓰는 습관을 공유합니다.</span>
+              </p>
+              <p>
+                Arthur is always a little too close to the truth.
+                <span class="ko">아서는 언제나 진실에 조금 지나치게 가까이 있습니다.</span>
+              </p>
+              <div class="grid2">
+                <div class="info-box">
+                  <div class="meta">Night</div>
+                  <h3>The Phantom Thief</h3>
+                  <p>
+                    Elegant, provocative, and calm.
+                    <span class="ko">우아하고 도발적이며 침착합니다.</span>
+                  </p>
+                </div>
+                <div class="info-box">
+                  <div class="meta">Arthur Whitlock</div>
+                  <h3>The Suspected Partner</h3>
+                  <p>
+                    Charming, clever, and difficult to read.
+                    <span class="ko">매력적이고 영리하며, 속을 읽기 어렵습니다.</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="section-index">03 · Figures</div>
+            <div>
+              <h2>The Faces in the Record</h2>
+              <div class="grid4">
+                <div class="info-box">
+                  <div class="meta">Art Appraiser</div>
+                  <h3>Lucien Vale</h3>
+                  <p>
+                    A young appraiser known as the ghost of London's salons.
+                    <span class="ko">런던 사교계의 유령이라 불리는 젊은 감정사입니다.</span>
+                  </p>
+                </div>
+                <div class="info-box">
+                  <div class="meta">Investigator</div>
+                  <h3>Arthur Whitlock</h3>
+                  <p>
+                    Skilled with locks, forged papers, and crime scenes.
+                    <span class="ko">자물쇠, 위조 문서, 그리고 범죄 현장 분석에 능합니다.</span>
+                  </p>
+                </div>
+                <div class="info-box">
+                  <div class="meta">Lead Detective</div>
+                  <h3>The Inspector</h3>
+                  <p>
+                    She hunts Night across the city.
+                    <span class="ko">그녀는 도시를 가로질러 나이트를 추적합니다.</span>
+                  </p>
+                </div>
+                <div class="info-box">
+                  <div class="meta">Authorities & Nobility</div>
+                  <h3>Those Who Bury the Truth</h3>
+                  <p>
+                    Superiors and collectors with much to hide.
+                    <span class="ko">숨겨야 할 것이 많은 상관들과 수집가들입니다.</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="section-index">04 · Stages</div>
+            <div>
+              <h2>Where the Story Breathes</h2>
+              <div class="grid4">
+                <div class="info-box">
+                  <h3>Scotland Yard</h3>
+                  <p>
+                    Damp files, cold desks, and stale coffee.
+                    <span class="ko">축축한 서류, 차가운 책상, 식어버린 커피가 있는 곳입니다.</span>
+                  </p>
+                </div>
+                <div class="info-box">
+                  <h3>Lucien's Rooms</h3>
+                  <p>
+                    Cedar, wax, and broken beauty.
+                    <span class="ko">삼나무와 밀랍, 그리고 깨진 아름다움이 머무는 공간입니다.</span>
+                  </p>
+                </div>
+                <div class="info-box">
+                  <h3>Private Mansions</h3>
+                  <p>
+                    Velvet curtains and polished lies.
+                    <span class="ko">벨벳 커튼과 매끈한 거짓말이 공존하는 장소입니다.</span>
+                  </p>
+                </div>
+                <div class="info-box">
+                  <h3>Rooftops & Alleys</h3>
+                  <p>
+                    Wet stone and the sound of pursuit.
+                    <span class="ko">젖은 돌바닥과 추격의 발소리가 남는 밤의 길입니다.</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </article>
+    </div>
+  </main>
+</div>
+
+<script>
+const envelope = document.getElementById('envelope');
+const sealButton = document.getElementById('sealButton');
+const intro = document.getElementById('intro');
+const archive = document.getElementById('archive');
+const archiveReveal = document.getElementById('archiveReveal');
+const archiveLink = document.getElementById('archiveLink');
+const returnButton = document.getElementById('returnButton');
+const marks = document.querySelectorAll('.mark');
+let currentStep = 1;
+
+sealButton.addEventListener('click', () => {
+  envelope.classList.add('open');
+});
+
+marks.forEach(mark => {
+  mark.addEventListener('click', () => {
+    const step = Number(mark.dataset.step);
+    if (step === currentStep) {
+      mark.classList.add('done');
+      mark.disabled = true;
+      currentStep += 1;
+      if (currentStep === 6) {
+        archiveReveal.classList.add('show');
+        archiveLink.focus({preventScroll:true});
+      }
+    } else {
+      mark.classList.remove('error');
+      void mark.offsetWidth;
+      mark.classList.add('error');
+    }
+  });
+});
+
+archiveLink.addEventListener('click', (e) => {
+  e.preventDefault();
+  intro.classList.add('hidden');
+  archive.classList.add('visible');
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+
+returnButton.addEventListener('click', () => {
+  archive.classList.remove('visible');
+  intro.classList.remove('hidden');
+  envelope.classList.remove('open');
+  archiveReveal.classList.remove('show');
+  currentStep = 1;
+  marks.forEach(m => {
+    m.classList.remove('done','error');
+    m.disabled = false;
+  });
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+
+
+const bgMusic = document.getElementById('bgMusic');
+const musicToggle = document.getElementById('musicToggle');
+let musicActivated = false;
+let musicShouldPlay = false;
+
+bgMusic.volume = 0.52;
+
+async function startBackgroundMusic() {
+  musicShouldPlay = true;
+  try {
+    await bgMusic.play();
+    musicActivated = true;
+    musicToggle.classList.add('ready');
+    if ('mediaSession' in navigator) {
+      navigator.mediaSession.playbackState = 'playing';
+    }
+  } catch (error) {
+    musicToggle.classList.add('ready');
+  }
+}
+
+sealButton.addEventListener('click', startBackgroundMusic, { once: true });
+
+musicToggle.addEventListener('click', async () => {
+  if (!musicActivated && bgMusic.paused) {
+    await startBackgroundMusic();
+    return;
+  }
+  bgMusic.muted = !bgMusic.muted;
+  musicToggle.classList.toggle('muted', bgMusic.muted);
+  musicToggle.setAttribute('aria-label', bgMusic.muted ? '배경음악 켜기' : '배경음악 음소거');
+});
+
+bgMusic.addEventListener('ended', () => {
+  if (musicShouldPlay) {
+    bgMusic.currentTime = 0;
+    bgMusic.play().catch(() => {});
+  }
+});
+
+bgMusic.addEventListener('play', () => {
+  musicActivated = true;
+  musicToggle.classList.add('ready');
+  if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'playing';
+});
+
+if ('mediaSession' in navigator) {
+  try {
+    navigator.mediaSession.metadata = new MediaMetadata({
+      title: 'Moonlit Phantom × Midnight Phantom Waltz',
+      artist: 'Background Theme',
+      album: 'The Shadows of the Fog City'
+    });
+    navigator.mediaSession.setActionHandler('play', () => {
+      musicShouldPlay = true;
+      bgMusic.play().catch(() => {});
+    });
+    navigator.mediaSession.setActionHandler('pause', () => {
+      musicShouldPlay = false;
+      bgMusic.pause();
+    });
+  } catch (error) {}
+}
+
+// Do not pause when the tab or window is hidden. If a desktop browser briefly
+// suspends playback, resume it when the document becomes active again.
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden && musicShouldPlay && bgMusic.paused) {
+    bgMusic.play().catch(() => {});
+  }
+});
+window.addEventListener('pageshow', () => {
+  if (musicShouldPlay && bgMusic.paused) bgMusic.play().catch(() => {});
+});
+
+</script>
+</body>
+</html>
