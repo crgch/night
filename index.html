@@ -521,6 +521,108 @@ button{background:none;border:0;padding:0;-webkit-appearance:none;appearance:non
   .music-toggle{right:12px;bottom:12px;width:42px;height:42px}
 }
 
+
+
+/* Mobile-first newspaper readability & bilingual headline system */
+.newspaper{
+  --issue-accent:#73323b;
+  --issue-accent-soft:rgba(115,50,59,.075);
+  --issue-accent-line:rgba(115,50,59,.62);
+}
+.newspaper.old{
+  --issue-accent:#536d78;
+  --issue-accent-soft:rgba(83,109,120,.085);
+  --issue-accent-line:rgba(83,109,120,.62);
+}
+.newspaper.older{
+  --issue-accent:#78613a;
+  --issue-accent-soft:rgba(120,97,58,.09);
+  --issue-accent-line:rgba(120,97,58,.64);
+}
+.paper-name-ko{margin-top:5px;font-size:9px;line-height:1.25;letter-spacing:.12em;font-weight:700;color:rgba(39,30,22,.68)}
+.paper-edition-ko{display:block;margin-top:3px;font-family:"Noto Serif KR","Malgun Gothic",serif;font-size:8px;letter-spacing:.02em;text-transform:none;opacity:.68}
+.headline-ko{margin:7px 0 0;text-align:center;font-family:"Noto Serif KR","Malgun Gothic",serif;font-size:14px;line-height:1.35;font-weight:700;word-break:keep-all;color:var(--issue-accent)}
+.deck-ko{margin:5px auto 0;max-width:680px;text-align:center;font-family:"Noto Serif KR","Malgun Gothic",serif;font-size:10px;line-height:1.55;color:rgba(38,29,21,.68);word-break:keep-all}
+.title-ko{display:block;margin:-1px 0 8px;padding-bottom:6px;border-bottom:1px solid rgba(45,36,27,.22);font-family:"Noto Serif KR","Malgun Gothic",serif;font-size:11px;line-height:1.45;font-weight:700;color:var(--issue-accent);word-break:keep-all}
+.rule-title-ko{display:block;margin:-2px 0 7px;text-align:center;font-family:"Noto Serif KR","Malgun Gothic",serif;font-size:9px;line-height:1.4;color:rgba(38,29,21,.62);word-break:keep-all}
+.section-cap-ko{display:block;margin-top:3px;font-family:"Noto Serif KR","Malgun Gothic",serif;font-size:9px;letter-spacing:.01em;text-transform:none;color:rgba(38,29,21,.63);font-weight:400}
+.imprint-ko{display:block;margin-top:2px;font-family:"Noto Serif KR","Malgun Gothic",serif;font-size:7.8px;letter-spacing:0;text-transform:none;opacity:.68}
+
+/* On a phone, every article reads as a distinct clipping rather than one long wall of text. */
+.news-grid{gap:10px}
+.main-column,.side-column{display:flex;flex-direction:column;gap:10px}
+.news-block{
+  position:relative;
+  margin:0;
+  padding:14px 11px 15px;
+  border:1px solid rgba(45,36,27,.25);
+  border-left:4px solid var(--issue-accent-line);
+  background:var(--issue-accent-soft);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.18);
+}
+.main-column>.news-block:nth-child(even),
+.side-column>.news-block:nth-child(even),
+.two-up>.news-block:nth-child(even){background:rgba(255,255,255,.13)}
+.news-block h2{font-size:22px;line-height:1.05}
+.news-block h3{font-size:17px;line-height:1.08}
+.news-block p{font-size:12.4px;line-height:1.58}
+.news-block .ko-news{margin-top:6px;padding-top:6px;border-top:1px dotted rgba(45,36,27,.24);font-size:10.4px;line-height:1.68}
+.news-meta{
+  display:inline-block;
+  width:max-content;max-width:100%;
+  margin:0 0 7px;
+  padding:3px 6px 2px;
+  background:var(--issue-accent);
+  color:#f3ecdf;
+  font-size:7.5px;line-height:1.25;
+  letter-spacing:.11em;
+}
+.two-up{display:grid;grid-template-columns:1fr;gap:10px;margin-top:10px}
+.two-up .brief{border-bottom:1px solid rgba(45,36,27,.25)}
+.notice-box{background:rgba(255,255,255,.12);border-color:var(--issue-accent-line)}
+.scrap-note{width:96%;margin:12px auto 2px;padding:11px 10px;font-size:12px}
+.scrap-ko{display:block;margin-top:6px;font-family:"Noto Serif KR","Malgun Gothic",serif;font-size:9.5px;line-height:1.5;color:rgba(38,29,21,.65);font-weight:400}
+.wit-line{margin-top:8px!important;padding-top:7px;border-top:1px dashed rgba(45,36,27,.3);font-size:10px!important;line-height:1.5!important;font-style:italic;text-align:left!important;color:rgba(38,29,21,.72)}
+.wit-line .ko-news{border-top:0;padding-top:2px;margin-top:2px;font-style:normal}
+
+.classifieds,.corrections{margin-top:16px;padding-top:15px}
+.section-cap{font-size:11px;color:#251e18}
+.classified-grid{grid-template-columns:1fr 1fr}
+.classified{padding:10px 8px;background:rgba(255,255,255,.08)}
+.classified:nth-child(4n+2),.classified:nth-child(4n+3){background:var(--issue-accent-soft)}
+.classified h4{font-size:10.4px}
+.classified .classified-ko-title{display:block;margin-top:2px;font-family:"Noto Serif KR","Malgun Gothic",serif;font-size:8px;line-height:1.3;color:var(--issue-accent);font-weight:700}
+.correction-item{grid-template-columns:82px minmax(0,1fr);padding:8px 4px}
+.correction-item:nth-child(even){background:var(--issue-accent-soft)}
+.correction-item strong .name-ko{display:block;margin-top:2px;font-family:"Noto Serif KR","Malgun Gothic",serif;font-size:7.7px;line-height:1.25;text-transform:none;color:var(--issue-accent);font-weight:400}
+
+@media (max-width:520px){
+  .archive-shell{width:calc(100% - 8px)}
+  .newspaper{padding:13px 9px 19px}
+  .masthead{margin-bottom:12px;padding-top:8px;padding-bottom:8px}
+  .paper-name{font-size:clamp(25px,9vw,38px)}
+  .lead{padding:8px 3px 15px;margin-bottom:11px}
+  .lead h1{font-size:clamp(30px,10vw,43px);line-height:.98}
+  .headline-ko{font-size:15px}
+  .deck{font-size:10.6px;line-height:1.42}
+  .deck-ko{font-size:10px}
+  .news-grid{display:flex;flex-direction:column;gap:10px}
+  .news-block{padding:14px 10px 15px}
+  .news-block h2{font-size:21px}
+  .news-block h3{font-size:17px}
+  .title-ko{font-size:11.5px;margin-top:2px}
+  .classified-grid{grid-template-columns:1fr 1fr}
+  .correction-item{grid-template-columns:78px minmax(0,1fr)}
+  .archive-request{width:96%;padding:12px 10px}
+}
+
+@media (min-width:680px){
+  .main-column,.side-column{gap:12px}
+  .news-grid{column-gap:18px}
+  .two-up{grid-template-columns:1fr 1fr;gap:12px}
+  .two-up .brief{border-bottom:1px solid rgba(45,36,27,.25)}
+}
+
 </style>
 </head>
 <body>
@@ -555,18 +657,18 @@ button{background:none;border:0;padding:0;-webkit-appearance:none;appearance:non
           </header>
 
           <div class="line">
-            <div class="en">The Winter Lio<button class="mark" data-step="1" aria-label="first letter N">n</button>'s Eye rests in Blackwood Hall.</div>
-            <div class="ko">겨울사자의 눈은 블랙우드 홀에 놓여 있습니다.</div>
+            <div class="en">The Silver Hawk rests i<button class="mark" data-step="1" aria-label="first letter N">n</button> Blackwood Hall.</div>
+            <div class="ko">은제 매는 블랙우드 홀에 놓여 있습니다.</div>
           </div>
 
           <div class="line">
-            <div class="en">Its heart is set in <button class="mark" data-step="2" aria-label="second letter I">i</button>vory and old gold.</div>
-            <div class="ko">그 심장은 상아와 오래된 금속에 박혀 있습니다.</div>
+            <div class="en">Its w<button class="mark" data-step="2" aria-label="second letter I">i</button>ngs will remain beneath glass until midnight.</div>
+            <div class="ko">그 은빛 날개는 자정까지 유리 진열장 아래 머물겠지요.</div>
           </div>
 
           <div class="line">
-            <div class="en">A <button class="mark" data-step="3" aria-label="third letter G">g</button>lass case keeps it from unworthy hands.</div>
-            <div class="ko">유리 진열장은 그 유물을 합당치 않은 손에서 지키고 있습니다.</div>
+            <div class="en">A <button class="mark" data-step="3" aria-label="third letter G">g</button>uard may watch the case, if that comforts him.</div>
+            <div class="ko">경비가 진열장을 지켜도 좋습니다. 그편이 마음 편하다면요.</div>
           </div>
 
           <div class="line">
@@ -626,106 +728,128 @@ button{background:none;border:0;padding:0;-webkit-appearance:none;appearance:non
       </div>
 
       <div class="newspaper-stack" id="newspaperStack">
-        <!-- 1겹: 현재 신문. 큰 기사는 레드헤링, 하단 광고 8개의 첫 글자가 WHITLOCK. -->
+        <!-- 1겹: 현재 신문. 두 번째 예고/두 번째 현장. 아직 성공한 도난은 1건이며 은제 매가 새 표적. 광고 8개의 첫 글자가 WHITLOCK. -->
         <article class="newspaper active" id="issueCurrent" data-issue="current" aria-labelledby="currentTitle">
           <header class="masthead">
             <div class="paper-name">The London Evening Chronicle</div>
+            <div class="paper-name-ko">런던 이브닝 크로니클</div>
             <div class="paper-subline"><span>Thursday, 17 November 1898</span><span>One Penny</span></div>
-            <div class="paper-edition">Late City Edition · Fog expected after dusk</div>
+            <div class="paper-edition">Late City Edition · Fog expected after dusk<span class="paper-edition-ko">시내 석간판 · 해질녘 이후 안개 예상</span></div>
           </header>
 
           <section class="lead">
-            <div class="kicker">Crime &amp; Society · Special Report</div>
-            <h1 id="currentTitle">Night Baffles the Yard Again</h1>
-            <div class="deck">Anonymous warning names Blackwood Hall; a witness describes a tall silver-haired figure near the western roofline.</div>
-            <div class="byline">From our Crime Correspondent</div>
+            <div class="kicker">The Night Case · Second Warning</div>
+            <h1 id="currentTitle">Night Chooses His Second Stage</h1>
+            <div class="headline-ko">나이트, 두 번째 무대를 고르다</div>
+            <div class="deck">One object has vanished and remains unrecovered. Now a second warning names Blackwood Hall’s Silver Hawk.</div>
+            <div class="deck-ko">도난품은 아직 단 한 점, 회수되지 않았다. 그리고 두 번째 예고장은 블랙우드 홀의 ‘은제 매’를 지목했다.</div>
+            <div class="byline">From our Crime Correspondent · 범죄 담당 기자</div>
           </section>
 
           <div class="news-grid">
             <div class="main-column">
               <section class="news-block">
-                <div class="news-meta">Blackwood Hall · Kensington</div>
-                <h2>A Thief Announces His Visit</h2>
-                <p class="dropcap">A second note attributed to the burglar styling himself “Night” reached Blackwood Hall yesterday. It names the Winter Lion’s Eye, an ivory-and-gold antiquity due to remain on private display through midnight. Lord Blackwood has refused to remove the piece, calling the warning “theatre for the newspapers.”</p>
-                <span class="ko-news">‘나이트’라 자칭하는 절도범의 두 번째 예고장이 어제 블랙우드 홀에 도착했다. 예고장은 자정까지 비공개 전시될 상아와 금제 유물 ‘겨울사자의 눈’을 지목했다. 블랙우드 경은 이를 “신문을 위한 연극”이라며 유물을 옮기지 않겠다고 밝혔다.</span>
-                <p>One groom claims he saw a man of unusual height crossing the mews shortly before the last rain. He remembers pale hair and says the stranger steadied himself with his left hand. Another servant, questioned separately, insists the man never removed his hat.</p>
-                <span class="ko-news">마부 한 명은 마지막 비가 내리기 직전 마구간 뒤편을 가로지르는 큰 키의 남자를 보았다고 주장했다. 그는 옅은 머리색과 왼손을 짚는 동작을 기억했다. 그러나 따로 조사받은 다른 하인은 그 남자가 모자를 벗은 적이 없다고 진술했다.</span>
+                <div class="news-meta">Blackwood Hall · Kensington · Second Scene</div>
+                <h2>The Silver Hawk Put Under Guard</h2>
+                <span class="title-ko">은제 매, 삼엄한 경비 아래</span>
+                <p class="dropcap">A second note attributed to the burglar styling himself “Night” reached Blackwood Hall yesterday. The first object stolen in the case has not been recovered, and police have declined to publish its name. The new notice instead names <em>The Silver Hawk</em>, a silver antiquity scheduled to remain in the west gallery until midnight.</p>
+                <span class="ko-news">‘나이트’라 자칭하는 절도범의 두 번째 예고장이 어제 블랙우드 홀에 도착했다. 첫 범행에서 사라진 물건은 아직 회수되지 않았으며 경찰은 그 이름을 공개하지 않았다. 새 예고장은 대신 자정까지 서쪽 갤러리에 전시될 은제 유물 ‘은제 매’를 지목했다.</span>
+                <p>Lord Blackwood has refused to remove the piece, describing the warning as “theatre for the newspapers.” Scotland Yard has therefore treated the house as the second likely theft scene and placed additional men at the west entrance, gallery doors and garden wall.</p>
+                <span class="ko-news">블랙우드 경은 예고장을 “신문을 위한 연극”이라 부르며 유물을 옮기지 않겠다고 밝혔다. 이에 스코틀랜드 야드는 저택을 두 번째 예상 범행 현장으로 보고 서쪽 출입구와 갤러리 문, 정원 담장에 추가 인력을 배치했다.</span>
+
+                <div class="scrap-note" aria-label="A clipped anonymous sentence reproduced by the paper">
+                  <span>Some</span> <span>records</span> <span>are not lost.</span><br>
+                  <span>They are hidden.</span>
+                  <span class="scrap-ko">어떤 기록은 사라진 것이 아닙니다. 숨겨져 있을 뿐입니다.</span>
+                </div>
+                <p class="wit-line">The clipping above was found tucked among press copies connected with the first theft. The Yard has not explained why a thief with a taste for entrances has developed an interest in filing systems.<span class="ko-news">위 문구가 적힌 스크랩은 첫 도난 사건과 관련된 신문 묶음 사이에서 발견됐다. 입장에는 그토록 공을 들이는 도둑이 왜 갑자기 문서 정리에 관심을 보이는지, 야드는 아직 설명하지 못했다.</span></p>
               </section>
 
               <section class="two-up">
                 <div class="brief news-block">
                   <div class="news-meta">Police &amp; Courts</div>
                   <h3>New Yard Man Talks Locks</h3>
-                  <p>Arthur Whitlock, recently transferred to Scotland Yard, has drawn notice for an inconvenient talent with locks and forged papers. Asked how a thief might leave Blackwood Hall, he reportedly answered, “Not by the door everyone is watching.”</p>
-                  <span class="ko-news">최근 스코틀랜드 야드로 전입한 아서 휘트록은 자물쇠와 위조 문서를 다루는 유별난 솜씨로 눈길을 끌고 있다. 블랙우드 홀에서 범인이 어떻게 빠져나갈 것 같으냐는 질문에는 “모두가 지켜보는 문으로는 아니겠지요”라고 답했다고 한다.</span>
+                  <span class="title-ko">새 수사관, 자물쇠 얘기만 나오면 말이 많다</span>
+                  <p>Arthur Whitlock, recently transferred to Scotland Yard, has drawn notice for an inconvenient talent with locks and forged papers. Asked how Night might leave Blackwood Hall, he reportedly answered, “Not by the door everyone is watching.”</p>
+                  <span class="ko-news">최근 스코틀랜드 야드로 전입한 아서 휘트록은 자물쇠와 위조 문서를 다루는 유별난 솜씨로 눈길을 끌고 있다. 나이트가 블랙우드 홀을 어떻게 빠져나갈 것 같으냐는 질문에는 “모두가 지켜보는 문으로는 아니겠지요”라고 답했다고 한다.</span>
+                  <p class="wit-line">A junior clerk later asked whether this counted as “helpful.” No official ruling has yet been issued.<span class="ko-news">한 신입 서기는 뒤늦게 이것도 ‘도움이 되는 답변’에 포함되느냐고 물었다. 아직 공식 판정은 내려지지 않았다.</span></p>
                 </div>
                 <div class="brief news-block">
                   <div class="news-meta">Arts &amp; Society</div>
                   <h3>Vale Declines a Provenance</h3>
+                  <span class="title-ko">베일, 한 점의 내력에는 답하지 않다</span>
                   <p>Lucien Vale, the young appraiser favoured by several private collections, examined three objects at Blackwood Hall this week. He certified two and declined to state an opinion on the history of the third.</p>
-                  <span class="ko-news">여러 개인 수집가가 찾는 젊은 감정사 루시언 베일이 이번 주 블랙우드 홀의 세 유물을 살폈다. 두 점은 감정을 마쳤으나, 나머지 한 점의 내력에 대해서는 의견을 밝히지 않았다.</span>
+                  <span class="ko-news">여러 개인 수집가가 찾는 젊은 감정사 루시언 베일이 이번 주 블랙우드 홀의 세 유물을 살폈다. 두 점은 감정을 마쳤으나 나머지 한 점의 내력에 대해서는 의견을 밝히지 않았다.</span>
                 </div>
               </section>
 
               <section class="news-block">
                 <div class="news-meta">Public Notices</div>
                 <h3>Repairs, Gas &amp; Closing Hours</h3>
+                <span class="title-ko">보수 공사·가스 공급·폐장 시각 안내</span>
                 <p>The Kensington Gas Company advises reduced pressure in the western district between 11.40 p.m. and 12.15 a.m. Stone repairs continue along the west face of Blackwood Hall; exterior scaffolding is to remain until Friday. Guests attending the Blackwood charitable supper are requested to depart by 11.30 p.m.</p>
-                <span class="ko-news">켄싱턴 가스 회사는 밤 11시 40분부터 12시 15분까지 서부 구역의 가스 압력이 낮아질 수 있다고 알렸다. 블랙우드 홀 서쪽 외벽은 석재 보수로 비계가 설치되어 있으며 금요일까지 철거되지 않는다. 자선 만찬 참석객은 밤 11시 30분까지 퇴장하도록 안내됐다.</span>
+                <span class="ko-news">켄싱턴 가스 회사는 밤 11시 40분부터 12시 15분까지 서부 구역의 가스 압력이 낮아질 수 있다고 알렸다. 블랙우드 홀 서쪽 외벽에는 석재 보수용 비계가 설치돼 있으며 금요일까지 철거되지 않는다. 자선 만찬 참석객은 밤 11시 30분까지 퇴장하도록 안내됐다.</span>
               </section>
             </div>
 
             <aside class="side-column">
               <section class="news-block">
                 <div class="rule-title">City Briefs</div>
-                <h3>Seal Found in Empty Case</h3>
-                <p>Police confirm that a red wax impression has appeared at more than one scene attributed to Night. No maker’s mark has been publicly identified.</p>
-                <span class="ko-news">경찰은 나이트의 범행으로 추정되는 여러 현장에서 붉은 왁스 인장이 발견됐다고 확인했다. 공개적으로 확인된 제작자 표식은 없다.</span>
+                <span class="rule-title-ko">런던 단신</span>
+                <h3>Red Seal Confirmed at First Theft</h3>
+                <span class="title-ko">첫 도난 현장의 붉은 실링 확인</span>
+                <p>Police confirm that a red wax impression was left in the empty case after Night’s first successful theft. No maker’s mark has been publicly identified.</p>
+                <span class="ko-news">경찰은 나이트의 첫 성공한 절도 뒤 빈 진열장에 붉은 왁스 실링이 남겨졌다고 확인했다. 공개적으로 확인된 제작자 표식은 없다.</span>
+              </section>
+
+              <section class="news-block">
+                <h3>Yard Requests Restraint in Silver-Hair Reports</h3>
+                <span class="title-ko">야드, ‘은발 목격 신고’에 자제를 요청</span>
+                <p>After twelve reports in two days, Scotland Yard reminds citizens that “silver hair” and “left-handedness” do not, separately or together, constitute an arrest warrant.</p>
+                <span class="ko-news">이틀 동안 열두 건의 신고가 몰리자 스코틀랜드 야드는 “은발”과 “왼손잡이”가 각각은 물론 둘을 합쳐도 체포영장이 되지는 않는다고 시민들에게 당부했다.</span>
               </section>
 
               <section class="news-block">
                 <h3>Spiritualist Promises the Thief’s Name</h3>
-                <p>Madame Violette of Bloomsbury announces a private séance at nine, claiming “the dead know the face behind the mask.” Seats: two shillings.</p>
-                <span class="ko-news">블룸즈버리의 마담 비올레트가 밤 아홉 시 비공개 강령회를 열며 “죽은 자는 가면 뒤의 얼굴을 안다”고 선전했다. 좌석은 2실링.</span>
+                <span class="title-ko">강령술사, 오늘 밤 괴도의 이름을 밝히겠다고 선언</span>
+                <p>Madame Violette of Bloomsbury announces a private séance at nine, claiming “the dead know the face behind the mask.” Seats: two shillings. Refunds are not mentioned.</p>
+                <span class="ko-news">블룸즈버리의 마담 비올레트가 밤 아홉 시 비공개 강령회를 열며 “죽은 자는 가면 뒤의 얼굴을 안다”고 선전했다. 좌석은 2실링. 환불에 관한 문구는 없다.</span>
               </section>
 
               <div class="notice-box">
                 <strong>Blackwood Collection</strong>
-                <p>Private viewing closes at 11.30 p.m.<br>West gallery entrance by invitation only.</p>
-              </div>
-
-              <div class="scrap-note" aria-label="A clipped anonymous note">
-                <span>Some</span> <span>records</span> <span>are not lost.</span><br>
-                <span>They are hidden.</span>
+                <span class="title-ko" style="border-bottom:0;margin:3px 0 5px;padding:0;text-align:center;">블랙우드 컬렉션 안내</span>
+                <p>Private viewing closes at 11.30 p.m.<br>West gallery entrance by invitation only.<br><span class="ko-mini">비공개 관람 23:30 종료 · 서쪽 갤러리 초대자만 입장</span></p>
               </div>
             </aside>
           </div>
 
           <section class="classifieds" aria-label="Classified advertisements">
-            <div class="section-cap">Classified Advertisements</div>
+            <div class="section-cap">Classified Advertisements<span class="section-cap-ko">생활 광고</span></div>
             <div class="classified-grid">
-              <div class="classified"><h4>Watch Repairs</h4><p>Marine and pocket watches cleaned, balanced and restored. H. Bell, Holborn.</p><span class="ko-mini">회중시계·선박용 시계 수리 및 복원.</span></div>
-              <div class="classified"><h4>Household Staff</h4><p>Experienced maids, footmen and cooks supplied with references. Hanover Agency.</p><span class="ko-mini">추천서를 갖춘 하인·하녀·요리사 알선.</span></div>
-              <div class="classified"><h4>Ink &amp; Stationery</h4><p>Ledger books, sealing wax and permanent black ink. Imperial Stationers.</p><span class="ko-mini">장부·봉랍·영구 흑색 잉크 판매.</span></div>
-              <div class="classified"><h4>Tailoring</h4><p>Morning coats and evening suits altered within forty-eight hours. T. Marsh.</p><span class="ko-mini">모닝코트·야회복 48시간 내 수선.</span></div>
-              <div class="classified"><h4>Luggage</h4><p>Travelling trunks, document cases and leather valises. Locks fitted to order.</p><span class="ko-mini">여행용 트렁크·서류가방·가죽 가방 주문 제작.</span></div>
-              <div class="classified"><h4>Optical Goods</h4><p>Spectacles repaired while you wait. Reading lenses from sixpence.</p><span class="ko-mini">안경 즉석 수리·독서용 렌즈 판매.</span></div>
-              <div class="classified"><h4>Carriages</h4><p>Night hire to all districts. Quiet horses for late calls. C. North &amp; Sons.</p><span class="ko-mini">심야 마차 대여·런던 전 구역 운행.</span></div>
-              <div class="classified"><h4>Kitchen Ranges</h4><p>Coal ranges swept, repaired and fitted. Immediate attendance in Kensington.</p><span class="ko-mini">석탄 레인지 청소·수리·설치.</span></div>
+              <div class="classified"><h4>Watch Repairs<span class="classified-ko-title">시계 수리</span></h4><p>Marine and pocket watches cleaned, balanced and restored. H. Bell, Holborn.</p><span class="ko-mini">회중시계·선박용 시계 수리 및 복원.</span></div>
+              <div class="classified"><h4>Household Staff<span class="classified-ko-title">가사 인력 알선</span></h4><p>Experienced maids, footmen and cooks supplied with references. Hanover Agency.</p><span class="ko-mini">추천서를 갖춘 하인·하녀·요리사 알선.</span></div>
+              <div class="classified"><h4>Ink &amp; Stationery<span class="classified-ko-title">잉크·문구류</span></h4><p>Ledger books, sealing wax and permanent black ink. Imperial Stationers.</p><span class="ko-mini">장부·봉랍·영구 흑색 잉크 판매.</span></div>
+              <div class="classified"><h4>Tailoring<span class="classified-ko-title">양복 수선</span></h4><p>Morning coats and evening suits altered within forty-eight hours. T. Marsh.</p><span class="ko-mini">모닝코트·야회복 48시간 내 수선.</span></div>
+              <div class="classified"><h4>Luggage<span class="classified-ko-title">여행 가방</span></h4><p>Travelling trunks, document cases and leather valises. Locks fitted to order.</p><span class="ko-mini">여행용 트렁크·서류가방·가죽 가방 주문 제작.</span></div>
+              <div class="classified"><h4>Optical Goods<span class="classified-ko-title">안경·렌즈</span></h4><p>Spectacles repaired while you wait. Reading lenses from sixpence.</p><span class="ko-mini">안경 즉석 수리·독서용 렌즈 판매.</span></div>
+              <div class="classified"><h4>Carriages<span class="classified-ko-title">마차 대여</span></h4><p>Night hire to all districts. Quiet horses for late calls. C. North &amp; Sons.</p><span class="ko-mini">심야 마차 대여·런던 전 구역 운행.</span></div>
+              <div class="classified"><h4>Kitchen Ranges<span class="classified-ko-title">주방 레인지</span></h4><p>Coal ranges swept, repaired and fitted. Immediate attendance in Kensington.</p><span class="ko-mini">석탄 레인지 청소·수리·설치.</span></div>
             </div>
           </section>
 
           <footer class="imprint">
-            Printed by Morland &amp; Co., Fleet Street, London.<br>
-            <button class="imprint-trigger" type="button" data-open-request="current">Back numbers supplied upon reference.</button>
+            Printed by Morland &amp; Co., Fleet Street, London.
+            <span class="imprint-ko">모랜드 &amp; Co. · 플리트 스트리트, 런던</span><br>
+            <button class="imprint-trigger" type="button" data-open-request="current">Back numbers supplied upon reference.<span class="imprint-ko">지난 호는 조회어 제시 시 제공.</span></button>
           </footer>
 
           <div class="archive-request" id="requestCurrent" aria-live="polite">
-            <div class="office">Morland &amp; Co. · Back-Number Office</div>
+            <div class="office">Morland &amp; Co. · Back-Number Office · 지난 호 보관실</div>
             <div class="reference-row">
-              <label for="referenceCurrent">Reference</label>
-              <input id="referenceCurrent" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-label="Back-number reference" />
-              <button type="button" data-submit-reference="current">Request</button>
+              <label for="referenceCurrent">Reference · 조회어</label>
+              <input id="referenceCurrent" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-label="지난 호 조회어" />
+              <button type="button" data-submit-reference="current">Request · 요청</button>
             </div>
             <div class="archive-status" id="statusCurrent"></div>
           </div>
@@ -735,15 +859,18 @@ button{background:none;border:0;padding:0;-webkit-appearance:none;appearance:non
         <article class="newspaper old" id="issueWhitlock" data-issue="whitlock" aria-labelledby="whitlockTitle">
           <header class="masthead">
             <div class="paper-name">The London Evening Chronicle</div>
+            <div class="paper-name-ko">런던 이브닝 크로니클</div>
             <div class="paper-subline"><span>Tuesday, 8 March 1887</span><span>One Penny</span></div>
-            <div class="paper-edition">Police Supplement · Second Impression</div>
+            <div class="paper-edition">Police Supplement · Second Impression<span class="paper-edition-ko">경찰 보충판 · 제2쇄</span></div>
           </header>
 
           <section class="lead">
             <div class="kicker">Police Supplement</div>
             <h1 id="whitlockTitle">Locksmith Held Over Burglar’s Plans</h1>
+            <div class="headline-ko">절도범의 도면을 넘겼다는 혐의로 자물쇠 장인 조사</div>
             <div class="deck">Drawings seized from a Clerkenwell workshop are alleged to match mechanisms used in two recent housebreakings.</div>
-            <div class="byline">Proceedings at Bow Street</div>
+            <div class="deck-ko">클러큰웰 작업장에서 압수된 도면이 최근 두 건의 침입 절도에 사용된 장치와 일치한다는 주장이 제기됐다.</div>
+            <div class="byline">Proceedings at Bow Street · 보 스트리트 심리</div>
           </section>
 
           <div class="news-grid">
@@ -751,6 +878,7 @@ button{background:none;border:0;padding:0;-webkit-appearance:none;appearance:non
               <section class="news-block">
                 <div class="news-meta">Bow Street · Evidence Heard</div>
                 <h2>Whitlock Denies Supplying Designs</h2>
+                <span class="title-ko">휘트록, 도면 제공 혐의를 부인</span>
                 <p class="dropcap">Mr. Edmund Whitlock, a locksmith of long standing, was questioned yesterday after police produced copied designs for private cabinet and strong-room locks. The prosecution alleges the drawings passed from his workshop to a burglar not yet in custody. Whitlock denied knowingly providing any such papers.</p>
                 <span class="ko-news">오랫동안 자물쇠 일을 해온 에드먼드 휘트록이 어제 조사를 받았다. 경찰은 개인 금고와 진열장 자물쇠 도면의 사본을 증거로 제시했으며, 검찰은 이 도면이 아직 체포되지 않은 절도범에게 휘트록의 작업장에서 넘어갔다고 주장했다. 휘트록은 어떤 도면도 고의로 제공한 적이 없다고 부인했다.</span>
                 <p>A clerk testified that one sheet bore Whitlock’s workshop notation. Defence counsel replied that the notation was commonly copied onto repair estimates and does not establish who prepared the seized sheet.</p>
@@ -761,12 +889,14 @@ button{background:none;border:0;padding:0;-webkit-appearance:none;appearance:non
                 <div class="brief news-block">
                   <div class="news-meta">Three Days Later</div>
                   <h3>Date on Seized Paper Disputed</h3>
+                  <span class="title-ko">압수 문서의 날짜에 이의 제기</span>
                   <p>A paper entered as evidence bears a watermark introduced by its manufacturer several months after the date written across the drawing. Police say the discrepancy may be clerical.</p>
                   <span class="ko-news">증거로 제출된 문서의 워터마크가 도면에 적힌 날짜보다 몇 달 뒤에야 사용되기 시작한 것이라는 지적이 나왔다. 경찰은 단순한 사무 착오일 수 있다고 밝혔다.</span>
                 </div>
                 <div class="brief news-block">
                   <div class="news-meta">Court Office</div>
                   <h3>One Exhibit Withdrawn</h3>
+                  <span class="title-ko">증거물 한 점, 돌연 철회</span>
                   <p>The Yard has temporarily withdrawn one exhibit pending examination. Officials declined to identify the document or say when it will be returned to the case.</p>
                   <span class="ko-news">스코틀랜드 야드는 감정을 이유로 증거물 한 점을 임시 철회했다. 당국은 어떤 문서인지, 언제 다시 사건 기록에 포함될지는 밝히지 않았다.</span>
                 </div>
@@ -775,22 +905,33 @@ button{background:none;border:0;padding:0;-webkit-appearance:none;appearance:non
               <section class="news-block">
                 <div class="news-meta">Editorial Note</div>
                 <h3>No Further Hearing Announced</h3>
+                <span class="title-ko">추가 심리 일정은 끝내 발표되지 않아</span>
                 <p>No date for a further public hearing had been posted by press time. The police register continues to list the matter as active, though the corresponding evidence index could not be inspected yesterday.</p>
                 <span class="ko-news">마감 시각까지 추가 공개 심리 날짜는 게시되지 않았다. 경찰 등록부에는 사건이 계속 진행 중인 것으로 남아 있으나, 이에 대응하는 증거 색인은 어제 열람할 수 없었다.</span>
+                <p class="wit-line">The register, at least, appears to enjoy excellent health.<span class="ko-news">적어도 사건 등록부만큼은 아주 건강하게 살아 있는 모양이다.</span></p>
               </section>
             </div>
 
             <aside class="side-column">
               <section class="news-block">
                 <div class="rule-title">Elsewhere in London</div>
+                <span class="rule-title-ko">런던의 다른 소식</span>
                 <h3>Masked Burglar Rumour Rejected</h3>
+                <span class="title-ko">‘가면 쓴 절도범’ 소문, 경찰이 부인</span>
                 <p>Police deny reports that the unidentified burglar wears a theatrical mask, calling the description an invention of penny papers.</p>
                 <span class="ko-news">경찰은 미확인 절도범이 연극용 가면을 쓴다는 소문을 부인하며 값싼 신문이 만들어낸 이야기라고 밝혔다.</span>
               </section>
               <section class="news-block">
                 <h3>Workshop Fire in Islington</h3>
+                <span class="title-ko">이즐링턴 작업장에 소규모 화재</span>
                 <p>A small fire damaged a cabinet-maker’s store. No connection with the Whitlock inquiry has been established.</p>
                 <span class="ko-news">이즐링턴의 가구 제작 작업장에서 소규모 화재가 발생했다. 휘트록 사건과의 관련성은 확인되지 않았다.</span>
+              </section>
+              <section class="news-block">
+                <h3>Lost Key Returned to Wrong Door</h3>
+                <span class="title-ko">분실 열쇠, 엉뚱한 집 문 앞에 반환</span>
+                <p>A brass key found near Clerkenwell was returned by an anonymous gentleman to Number 18. It belongs, unfortunately, to Number 81.</p>
+                <span class="ko-news">클러큰웰에서 발견된 황동 열쇠를 익명의 신사가 18번지에 돌려놓았다. 유감스럽게도 열쇠의 주인은 81번지였다.</span>
               </section>
               <div class="archive-note">
                 The Chronicle’s police supplements are separately indexed from the ordinary city edition.
@@ -800,30 +941,31 @@ button{background:none;border:0;padding:0;-webkit-appearance:none;appearance:non
           </div>
 
           <section class="corrections" aria-label="Notices and corrections">
-            <div class="section-cap">Notices &amp; Corrections</div>
+            <div class="section-cap">Notices &amp; Corrections<span class="section-cap-ko">공고 및 정정</span></div>
             <div class="correction-list">
-              <div class="correction-item"><strong>Aldridge</strong><p>Marriage notice: the ceremony will take place on Thursday, not Tuesday.<span class="ko-mini">혼인 공고의 요일을 화요일에서 목요일로 정정.</span></p></div>
-              <div class="correction-item"><strong>Sloane</strong><p>Change of address: correspondence is to be directed to Russell Square.<span class="ko-mini">우편물 수신 주소를 러셀 스퀘어로 변경.</span></p></div>
-              <div class="correction-item"><strong>Hargreaves</strong><p>The reported loss of a silver cane has been withdrawn; the article was recovered.<span class="ko-mini">은제 지팡이 분실 신고 철회. 물품 회수 완료.</span></p></div>
-              <div class="correction-item"><strong>Copley</strong><p>Printer’s error: “£60” in yesterday’s sale notice should have read “£6.”<span class="ko-mini">전날 매각 공고의 60파운드를 6파운드로 정정.</span></p></div>
-              <div class="correction-item"><strong>Rook</strong><p>A death notice submitted in error has been withdrawn at the family’s request.<span class="ko-mini">가족 요청에 따라 잘못 접수된 사망 공고 철회.</span></p></div>
-              <div class="correction-item"><strong>Ormond</strong><p>Lost correspondence recovered unopened near Chancery Lane.<span class="ko-mini">챈서리 레인 인근에서 분실 우편물을 미개봉 상태로 회수.</span></p></div>
-              <div class="correction-item"><strong>Finch</strong><p>Estate auction postponed pending confirmation of title.<span class="ko-mini">소유권 확인을 위해 유산 경매 연기.</span></p></div>
-              <div class="correction-item"><strong>Trelawney</strong><p>The name printed as “Trelawny” yesterday should read as above.<span class="ko-mini">전날 잘못 인쇄된 성의 철자를 위와 같이 정정.</span></p></div>
+              <div class="correction-item"><strong>Aldridge<span class="name-ko">올드리지</span></strong><p>Marriage notice: the ceremony will take place on Thursday, not Tuesday.<span class="ko-mini">혼인 공고의 요일을 화요일에서 목요일로 정정.</span></p></div>
+              <div class="correction-item"><strong>Sloane<span class="name-ko">슬론</span></strong><p>Change of address: correspondence is to be directed to Russell Square.<span class="ko-mini">우편물 수신 주소를 러셀 스퀘어로 변경.</span></p></div>
+              <div class="correction-item"><strong>Hargreaves<span class="name-ko">하그리브스</span></strong><p>The reported loss of a silver cane has been withdrawn; the article was recovered.<span class="ko-mini">은제 지팡이 분실 신고 철회. 물품 회수 완료.</span></p></div>
+              <div class="correction-item"><strong>Copley<span class="name-ko">코플리</span></strong><p>Printer’s error: “£60” in yesterday’s sale notice should have read “£6.”<span class="ko-mini">전날 매각 공고의 60파운드를 6파운드로 정정.</span></p></div>
+              <div class="correction-item"><strong>Rook<span class="name-ko">룩</span></strong><p>A death notice submitted in error has been withdrawn at the family’s request.<span class="ko-mini">가족 요청에 따라 잘못 접수된 사망 공고 철회.</span></p></div>
+              <div class="correction-item"><strong>Ormond<span class="name-ko">오먼드</span></strong><p>Lost correspondence recovered unopened near Chancery Lane.<span class="ko-mini">챈서리 레인 인근에서 분실 우편물을 미개봉 상태로 회수.</span></p></div>
+              <div class="correction-item"><strong>Finch<span class="name-ko">핀치</span></strong><p>Estate auction postponed pending confirmation of title.<span class="ko-mini">소유권 확인을 위해 유산 경매 연기.</span></p></div>
+              <div class="correction-item"><strong>Trelawney<span class="name-ko">트릴로니</span></strong><p>The name printed as “Trelawny” yesterday should read as above.<span class="ko-mini">전날 잘못 인쇄된 성의 철자를 위와 같이 정정.</span></p></div>
             </div>
           </section>
 
           <footer class="imprint">
-            Printed for the Chronicle Police Supplement, Fleet Street.<br>
-            <button class="imprint-trigger" type="button" data-open-request="whitlock">Earlier city editions retained by reference only.</button>
+            Printed for the Chronicle Police Supplement, Fleet Street.
+            <span class="imprint-ko">크로니클 경찰 보충판 · 플리트 스트리트</span><br>
+            <button class="imprint-trigger" type="button" data-open-request="whitlock">Earlier city editions retained by reference only.<span class="imprint-ko">이전 시내판은 조회어를 통해서만 보관 열람 가능.</span></button>
           </footer>
 
           <div class="archive-request" id="requestWhitlock" aria-live="polite">
-            <div class="office">Chronicle Archive · Earlier City Editions</div>
+            <div class="office">Chronicle Archive · Earlier City Editions · 이전 시내판 보관실</div>
             <div class="reference-row">
-              <label for="referenceWhitlock">Reference</label>
-              <input id="referenceWhitlock" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-label="Earlier edition reference" />
-              <button type="button" data-submit-reference="whitlock">Request</button>
+              <label for="referenceWhitlock">Reference · 조회어</label>
+              <input id="referenceWhitlock" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-label="이전 시내판 조회어" />
+              <button type="button" data-submit-reference="whitlock">Request · 요청</button>
             </div>
             <div class="archive-status" id="statusWhitlock"></div>
           </div>
@@ -833,15 +975,18 @@ button{background:none;border:0;padding:0;-webkit-appearance:none;appearance:non
         <article class="newspaper older" id="issueAshcroft" data-issue="ashcroft" aria-labelledby="ashcroftTitle">
           <header class="masthead">
             <div class="paper-name">The London Evening Chronicle</div>
+            <div class="paper-name-ko">런던 이브닝 크로니클</div>
             <div class="paper-subline"><span>Monday, 3 November 1879</span><span>One Penny</span></div>
-            <div class="paper-edition">Morning Extra · Government Proceedings</div>
+            <div class="paper-edition">Morning Extra · Government Proceedings<span class="paper-edition-ko">호외 조간 · 정부 절차 보도</span></div>
           </header>
 
           <section class="lead">
             <div class="kicker">Government &amp; Estates</div>
             <h1 id="ashcroftTitle">Treason Charge Against House of Ashcroft</h1>
+            <div class="headline-ko">애시크로프트 가문에 반역 혐의</div>
             <div class="deck">Crown officers seize papers and property after allegations of unlawful correspondence with foreign agents.</div>
-            <div class="byline">Special Parliamentary Correspondence</div>
+            <div class="deck-ko">외국 세력과 불법 서신을 주고받았다는 혐의로 왕실 관리들이 문서와 재산을 압류했다.</div>
+            <div class="byline">Special Parliamentary Correspondence · 의회 특별 취재</div>
           </section>
 
           <div class="news-grid">
@@ -849,6 +994,7 @@ button{background:none;border:0;padding:0;-webkit-appearance:none;appearance:non
               <section class="news-block">
                 <div class="news-meta">Westminster · Official Statement</div>
                 <h2>A Great House Under Seizure</h2>
+                <span class="title-ko">명문가, 압류 명령 아래 놓이다</span>
                 <p class="dropcap">Property belonging to the Ashcroft family has been placed under Crown control following accusations of treasonous correspondence. Officials displayed several copied letters but declined to permit examination of the originals. Counsel acting for the family protested that portions of the correspondence had been separated from their context.</p>
                 <span class="ko-news">애시크로프트 가문은 반역성 서신을 주고받았다는 혐의로 재산을 왕실에 압류당했다. 당국은 서신 사본 여러 장을 공개했으나 원본 열람은 허가하지 않았다. 가문 측 변호인은 일부 문장이 앞뒤 맥락에서 분리됐다고 항의했다.</span>
                 <p>No final judgment had been entered at the time this edition went to press. Nevertheless, household accounts, artworks and antiquities were already being catalogued for disposal under provisional order.</p>
@@ -858,20 +1004,23 @@ button{background:none;border:0;padding:0;-webkit-appearance:none;appearance:non
               <section class="news-block">
                 <div class="news-meta">Sale Rooms · Private Collections</div>
                 <h3>Ashcroft Effects to Be Dispersed</h3>
-                <p>Selected objects from the seized estate are to pass through several private sales rather than a single public auction. Among the catalogue descriptions examined by this paper is an ivory-and-old-gold jewel styled <em>The Winter Lion’s Eye</em>. Purchasers’ names will not appear in the printed public list.</p>
-                <span class="ko-news">압류된 가문의 일부 물품은 한 번의 공개 경매가 아니라 여러 비공개 매각을 거쳐 처분될 예정이다. 본지가 확인한 목록에는 상아와 오래된 금으로 만든 ‘겨울사자의 눈’이 포함돼 있다. 구매자 이름은 공개 인쇄 목록에 실리지 않는다.</span>
+                <span class="title-ko">애시크로프트 재산, 여러 비공개 매각으로 흩어진다</span>
+                <p>Selected objects from the seized estate are to pass through several private sales rather than a single public auction. Among the catalogue descriptions examined by this paper is a silver hawk figure, recorded simply as <em>The Silver Hawk</em>. Purchasers’ names will not appear in the printed public list.</p>
+                <span class="ko-news">압류된 가문의 일부 물품은 한 번의 공개 경매가 아니라 여러 비공개 매각을 거쳐 처분될 예정이다. 본지가 확인한 목록에는 단순히 ‘은제 매’라고 기록된 은제 매 형상의 유물도 포함돼 있다. 구매자 이름은 공개 인쇄 목록에 실리지 않는다.</span>
               </section>
 
               <section class="two-up">
                 <div class="brief news-block">
                   <div class="news-meta">12 November 1879</div>
                   <h3>Fire at Former Ashcroft Residence</h3>
+                  <span class="title-ko">옛 애시크로프트 저택에서 대형 화재</span>
                   <p>A severe night fire damaged the principal residence after seizure of the property. Identification of remains recovered from the eastern rooms has not been completed.</p>
                   <span class="ko-news">재산 압류 후 애시크로프트의 본저택에서 심야 대형 화재가 발생했다. 동쪽 방들에서 수습된 시신의 신원 확인은 아직 완료되지 않았다.</span>
                 </div>
                 <div class="brief news-block">
                   <div class="news-meta">13 November 1879 · Correction</div>
                   <h3>Casualty List Withheld</h3>
+                  <span class="title-ko">사상자 명단, 확정 보도 철회</span>
                   <p>Yesterday’s report incorrectly described the official casualty list as complete. Authorities state that the list remains provisional pending identification.</p>
                   <span class="ko-news">어제 본지는 공식 사상자 명단이 확정됐다고 보도했으나 이는 잘못이었다. 당국은 신원 확인이 끝날 때까지 명단이 잠정 상태라고 밝혔다.</span>
                 </div>
@@ -880,45 +1029,58 @@ button{background:none;border:0;padding:0;-webkit-appearance:none;appearance:non
               <section class="news-block">
                 <div class="news-meta">Records Office</div>
                 <h3>Several Estate Papers Unavailable</h3>
+                <span class="title-ko">가문 압류 기록 일부, 열람 불가</span>
                 <p>Requests to inspect the original seizure inventory were refused this morning. A clerk stated that portions had been transferred for “administrative review,” though no receiving office was named.</p>
                 <span class="ko-news">오늘 아침 압류 당시의 원본 재산 목록 열람 요청이 거부됐다. 한 서기는 일부 기록이 “행정 검토”를 위해 이관됐다고 설명했으나, 어느 부서로 넘겨졌는지는 밝히지 않았다.</span>
+                <p class="wit-line">The missing destination has, with admirable efficiency, also failed to appear in the destination ledger.<span class="ko-news">놀라울 만큼 효율적으로도, 그 ‘이관처’는 이관 대장에도 나타나지 않았다.</span></p>
               </section>
             </div>
 
             <aside class="side-column">
               <section class="news-block">
                 <div class="rule-title">Rumour &amp; Report</div>
+                <span class="rule-title-ko">소문과 보도</span>
                 <h3>Foreign Flight Alleged</h3>
+                <span class="title-ko">가문 인사의 해외 도피설</span>
                 <p>An evening paper claims that an unnamed Ashcroft relation fled for France before the seizure. No passenger record has been produced.</p>
                 <span class="ko-news">한 석간지는 이름이 밝혀지지 않은 애시크로프트 친족이 압류 직전 프랑스로 도피했다고 주장했으나, 승선 기록은 제시하지 못했다.</span>
               </section>
               <section class="news-block">
                 <h3>Occult Society Denies Connection</h3>
-                <p>A fashionable spiritualist circle has denied rumours that Ashcroft gatherings involved séances or forbidden rites.</p>
-                <span class="ko-news">유명 강령술 사교모임은 애시크로프트 저택에서 강령회나 금지된 의식이 열렸다는 소문을 부인했다.</span>
+                <span class="title-ko">강령술 사교회, 연루설 부인</span>
+                <p>A fashionable spiritualist circle has denied rumours that Ashcroft gatherings involved séances or forbidden rites. Its secretary added that tonight’s séance will proceed as scheduled.</p>
+                <span class="ko-news">유명 강령술 사교모임은 애시크로프트 저택에서 강령회나 금지된 의식이 열렸다는 소문을 부인했다. 다만 서기는 오늘 밤 예정된 강령회는 그대로 진행된다고 덧붙였다.</span>
               </section>
               <div class="notice-box">
                 <strong>Estate Catalogue Notice</strong>
-                <p>Descriptions are provisional.<br>Titles of ownership remain under review.</p>
+                <span class="title-ko" style="border-bottom:0;margin:3px 0 5px;padding:0;text-align:center;">가문 재산 목록 안내</span>
+                <p>Descriptions are provisional.<br>Titles of ownership remain under review.<br><span class="ko-mini">품목 설명은 잠정적이며 소유권 표기는 계속 검토 중.</span></p>
+              </div>
+              <div class="notice-box">
+                <strong>Auction-Room Courtesy</strong>
+                <span class="title-ko" style="border-bottom:0;margin:3px 0 5px;padding:0;text-align:center;">경매장 예절 안내</span>
+                <p>Bidders are requested to stop asking whether alleged curses reduce the reserve price.<br><span class="ko-mini">‘저주가 붙었으면 최저가가 내려가느냐’는 질문은 삼가 주십시오.</span></p>
               </div>
             </aside>
           </div>
 
           <section class="corrections" aria-label="Small notices from the archived edition">
-            <div class="section-cap">From the Small Print</div>
+            <div class="section-cap">From the Small Print<span class="section-cap-ko">작은 활자에서</span></div>
             <div class="correction-list">
-              <div class="correction-item"><strong>Property</strong><p>Several lots formerly described as “Crown effects” are now listed only as “property under order.”<span class="ko-mini">일부 물품의 표기가 ‘왕실 귀속품’에서 ‘명령에 따라 관리 중인 재산’으로 변경됐다.</span></p></div>
-              <div class="correction-item"><strong>Inventory</strong><p>The public index omits purchaser names and certain prior-owner references.<span class="ko-mini">공개 색인에서는 구매자 이름과 일부 이전 소유자 표기가 빠져 있다.</span></p></div>
-              <div class="correction-item"><strong>Fire</strong><p>The eastern stair was reported impassable before the brigade entered the house.<span class="ko-mini">소방대 진입 전부터 동쪽 계단은 통행 불가 상태였다고 기록됐다.</span></p></div>
+              <div class="correction-item"><strong>Property<span class="name-ko">재산</span></strong><p>Several lots formerly described as “Crown effects” are now listed only as “property under order.”<span class="ko-mini">일부 물품의 표기가 ‘왕실 귀속품’에서 ‘명령에 따라 관리 중인 재산’으로 변경됐다.</span></p></div>
+              <div class="correction-item"><strong>Inventory<span class="name-ko">목록</span></strong><p>The public index omits purchaser names and certain prior-owner references.<span class="ko-mini">공개 색인에서는 구매자 이름과 일부 이전 소유자 표기가 빠져 있다.</span></p></div>
+              <div class="correction-item"><strong>Fire<span class="name-ko">화재</span></strong><p>The eastern stair was reported impassable before the brigade entered the house.<span class="ko-mini">소방대 진입 전부터 동쪽 계단은 통행 불가 상태였다고 기록됐다.</span></p></div>
             </div>
           </section>
 
           <div class="final-closing">
-            <div class="printer">Printed for the Evening Chronicle, Fleet Street, London.</div>
+            <div class="printer">Printed for the Evening Chronicle, Fleet Street, London.<br><span class="imprint-ko">이브닝 크로니클 · 플리트 스트리트, 런던</span></div>
             <div class="final-ornament" aria-hidden="true"></div>
             <p class="clever">Clever.</p>
+            <span class="imprint-ko" style="margin-top:5px;">제법인데.</span>
           </div>
         </article>
+
       </div>
     </div>
   </main>
@@ -1039,7 +1201,7 @@ const archiveRules = {
     status: document.getElementById('statusCurrent'),
     answer: 'WHITLOCK',
     next: 'whitlock',
-    found: 'One copy located.'
+    found: 'One copy located. · 지난 호 한 부를 찾았습니다.'
   },
   whitlock: {
     panel: document.getElementById('requestWhitlock'),
@@ -1047,7 +1209,7 @@ const archiveRules = {
     status: document.getElementById('statusWhitlock'),
     answer: 'ASHCROFT',
     next: 'ashcroft',
-    found: 'One earlier edition located.'
+    found: 'One earlier edition located. · 더 이전 판본 한 부를 찾았습니다.'
   }
 };
 
@@ -1066,7 +1228,7 @@ function submitReference(key) {
   if (!rule || activeIssue !== key) return;
   const value = normaliseReference(rule.input.value);
   if (!value) {
-    rule.status.textContent = 'Reference required.';
+    rule.status.textContent = 'Reference required. · 조회어가 필요합니다.';
     return;
   }
   if (value === rule.answer) {
@@ -1074,7 +1236,7 @@ function submitReference(key) {
     rule.input.blur();
     window.setTimeout(() => showIssue(rule.next), 620);
   } else {
-    rule.status.textContent = 'No copy found under that reference.';
+    rule.status.textContent = 'No copy found under that reference. · 해당 조회어의 판본이 없습니다.';
   }
 }
 
