@@ -523,78 +523,96 @@ button{background:none;border:0;padding:0;-webkit-appearance:none;appearance:non
 
 
 
-/* Mobile-first newspaper readability & bilingual headline system */
-.newspaper{
-  --issue-accent:#73323b;
-  --issue-accent-soft:rgba(115,50,59,.075);
-  --issue-accent-line:rgba(115,50,59,.62);
-}
-.newspaper.old{
-  --issue-accent:#536d78;
-  --issue-accent-soft:rgba(83,109,120,.085);
-  --issue-accent-line:rgba(83,109,120,.62);
-}
-.newspaper.older{
-  --issue-accent:#78613a;
-  --issue-accent-soft:rgba(120,97,58,.09);
-  --issue-accent-line:rgba(120,97,58,.64);
-}
+/* Mobile-first newspaper readability & bilingual headline system — monochrome edition */
 .paper-name-ko{margin-top:5px;font-size:9px;line-height:1.25;letter-spacing:.12em;font-weight:700;color:rgba(39,30,22,.68)}
 .paper-edition-ko{display:block;margin-top:3px;font-family:"Noto Serif KR","Malgun Gothic",serif;font-size:8px;letter-spacing:.02em;text-transform:none;opacity:.68}
-.headline-ko{margin:7px 0 0;text-align:center;font-family:"Noto Serif KR","Malgun Gothic",serif;font-size:14px;line-height:1.35;font-weight:700;word-break:keep-all;color:var(--issue-accent)}
+.headline-ko{margin:7px 0 0;text-align:center;font-family:"Noto Serif KR","Malgun Gothic",serif;font-size:14px;line-height:1.35;font-weight:800;word-break:keep-all;color:#211a14}
 .deck-ko{margin:5px auto 0;max-width:680px;text-align:center;font-family:"Noto Serif KR","Malgun Gothic",serif;font-size:10px;line-height:1.55;color:rgba(38,29,21,.68);word-break:keep-all}
-.title-ko{display:block;margin:-1px 0 8px;padding-bottom:6px;border-bottom:1px solid rgba(45,36,27,.22);font-family:"Noto Serif KR","Malgun Gothic",serif;font-size:11px;line-height:1.45;font-weight:700;color:var(--issue-accent);word-break:keep-all}
+.title-ko{display:block;margin:2px 0 9px;padding-bottom:7px;border-bottom:1px solid rgba(45,36,27,.42);font-family:"Noto Serif KR","Malgun Gothic",serif;font-size:11.5px;line-height:1.45;font-weight:800;color:#211a14;word-break:keep-all}
 .rule-title-ko{display:block;margin:-2px 0 7px;text-align:center;font-family:"Noto Serif KR","Malgun Gothic",serif;font-size:9px;line-height:1.4;color:rgba(38,29,21,.62);word-break:keep-all}
 .section-cap-ko{display:block;margin-top:3px;font-family:"Noto Serif KR","Malgun Gothic",serif;font-size:9px;letter-spacing:.01em;text-transform:none;color:rgba(38,29,21,.63);font-weight:400}
 .imprint-ko{display:block;margin-top:2px;font-family:"Noto Serif KR","Malgun Gothic",serif;font-size:7.8px;letter-spacing:0;text-transform:none;opacity:.68}
 
-/* On a phone, every article reads as a distinct clipping rather than one long wall of text. */
-.news-grid{gap:10px}
-.main-column,.side-column{display:flex;flex-direction:column;gap:10px}
+/* Archived-copy mark: deliberately oversized so a phone reader knows at once that a different old issue has been opened. */
+.issue-stamp{display:none}
+.newspaper.old .issue-stamp,.newspaper.older .issue-stamp{
+  display:block;
+  position:absolute;
+  top:9px;
+  right:9px;
+  z-index:3;
+  min-width:88px;
+  padding:6px 7px 5px;
+  border:3px double #2b241d;
+  background:rgba(232,224,205,.94);
+  text-align:center;
+  transform:rotate(1deg);
+  box-shadow:2px 2px 0 rgba(43,36,29,.14);
+}
+.issue-stamp .stamp-top{display:block;font-size:7px;line-height:1.2;letter-spacing:.14em;text-transform:uppercase}
+.issue-stamp .stamp-main{display:block;margin:2px 0 1px;font-family:"Noto Serif KR","Malgun Gothic",serif;font-size:20px;line-height:1.05;font-weight:900;letter-spacing:-.04em}
+.issue-stamp .stamp-sub{display:block;font-size:7px;line-height:1.2;letter-spacing:.07em;text-transform:uppercase}
+.newspaper.old .masthead,.newspaper.older .masthead{padding-top:47px}
+
+/* Article separation without colour: spacing, double rules, typography and small ornaments do the work. */
+.news-grid{gap:0}
+.main-column,.side-column{display:flex;flex-direction:column;gap:0}
 .news-block{
   position:relative;
   margin:0;
-  padding:14px 11px 15px;
-  border:1px solid rgba(45,36,27,.25);
-  border-left:4px solid var(--issue-accent-line);
-  background:var(--issue-accent-soft);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.18);
+  padding:18px 3px 21px;
+  border:0;
+  border-top:4px double rgba(43,36,29,.88);
+  background:transparent;
+  box-shadow:none;
 }
-.main-column>.news-block:nth-child(even),
-.side-column>.news-block:nth-child(even),
-.two-up>.news-block:nth-child(even){background:rgba(255,255,255,.13)}
-.news-block h2{font-size:22px;line-height:1.05}
-.news-block h3{font-size:17px;line-height:1.08}
-.news-block p{font-size:12.4px;line-height:1.58}
-.news-block .ko-news{margin-top:6px;padding-top:6px;border-top:1px dotted rgba(45,36,27,.24);font-size:10.4px;line-height:1.68}
+.news-block:first-child{border-top:0;padding-top:12px}
+.news-block::after{
+  content:"◆";
+  display:block;
+  width:34px;
+  margin:17px auto -6px;
+  text-align:center;
+  font-size:7px;
+  line-height:1;
+  color:rgba(43,36,29,.58);
+  letter-spacing:.2em;
+}
+.news-block h2{font-size:23px;line-height:1.02;letter-spacing:-.025em}
+.news-block h3{font-size:18px;line-height:1.05;letter-spacing:-.018em}
+.news-block p{font-size:12.4px;line-height:1.6}
+.news-block .ko-news{margin-top:7px;padding-top:7px;border-top:1px dotted rgba(45,36,27,.34);font-size:10.4px;line-height:1.7}
 .news-meta{
   display:inline-block;
-  width:max-content;max-width:100%;
-  margin:0 0 7px;
-  padding:3px 6px 2px;
-  background:var(--issue-accent);
-  color:#f3ecdf;
+  width:auto;max-width:100%;
+  margin:0 0 8px;
+  padding:2px 0 3px;
+  border-top:1px solid rgba(43,36,29,.65);
+  border-bottom:1px solid rgba(43,36,29,.65);
+  background:transparent;
+  color:#211a14;
   font-size:7.5px;line-height:1.25;
-  letter-spacing:.11em;
+  letter-spacing:.12em;
+  font-weight:700;
 }
-.two-up{display:grid;grid-template-columns:1fr;gap:10px;margin-top:10px}
-.two-up .brief{border-bottom:1px solid rgba(45,36,27,.25)}
-.notice-box{background:rgba(255,255,255,.12);border-color:var(--issue-accent-line)}
-.scrap-note{width:96%;margin:12px auto 2px;padding:11px 10px;font-size:12px}
+.two-up{display:grid;grid-template-columns:1fr;gap:0;margin-top:0}
+.two-up .brief{border-bottom:0}
+.notice-box{background:transparent;border:2px double rgba(44,35,26,.82)}
+.scrap-note{width:96%;margin:13px auto 3px;padding:11px 10px;font-size:12px;background:#e8dfcd;border:1px dashed rgba(61,47,35,.52)}
 .scrap-ko{display:block;margin-top:6px;font-family:"Noto Serif KR","Malgun Gothic",serif;font-size:9.5px;line-height:1.5;color:rgba(38,29,21,.65);font-weight:400}
-.wit-line{margin-top:8px!important;padding-top:7px;border-top:1px dashed rgba(45,36,27,.3);font-size:10px!important;line-height:1.5!important;font-style:italic;text-align:left!important;color:rgba(38,29,21,.72)}
+.wit-line{margin-top:8px!important;padding-top:8px;border-top:1px dashed rgba(45,36,27,.38);font-size:10px!important;line-height:1.5!important;font-style:italic;text-align:left!important;color:rgba(38,29,21,.72)}
 .wit-line .ko-news{border-top:0;padding-top:2px;margin-top:2px;font-style:normal}
 
-.classifieds,.corrections{margin-top:16px;padding-top:15px}
+.classifieds,.corrections{margin-top:18px;padding-top:16px;border-top:5px double #2c251e}
 .section-cap{font-size:11px;color:#251e18}
-.classified-grid{grid-template-columns:1fr 1fr}
-.classified{padding:10px 8px;background:rgba(255,255,255,.08)}
-.classified:nth-child(4n+2),.classified:nth-child(4n+3){background:var(--issue-accent-soft)}
+.classified-grid{grid-template-columns:1fr 1fr;background:transparent}
+.classified{padding:10px 8px;background:transparent}
+.classified:nth-child(n){background:transparent}
 .classified h4{font-size:10.4px}
-.classified .classified-ko-title{display:block;margin-top:2px;font-family:"Noto Serif KR","Malgun Gothic",serif;font-size:8px;line-height:1.3;color:var(--issue-accent);font-weight:700}
-.correction-item{grid-template-columns:82px minmax(0,1fr);padding:8px 4px}
-.correction-item:nth-child(even){background:var(--issue-accent-soft)}
-.correction-item strong .name-ko{display:block;margin-top:2px;font-family:"Noto Serif KR","Malgun Gothic",serif;font-size:7.7px;line-height:1.25;text-transform:none;color:var(--issue-accent);font-weight:400}
+.classified .classified-ko-title{display:block;margin-top:2px;font-family:"Noto Serif KR","Malgun Gothic",serif;font-size:8px;line-height:1.3;color:#211a14;font-weight:700}
+.correction-item{grid-template-columns:82px minmax(0,1fr);padding:9px 4px;background:transparent}
+.correction-item:nth-child(n){background:transparent}
+.correction-item strong .name-ko{display:block;margin-top:2px;font-family:"Noto Serif KR","Malgun Gothic",serif;font-size:7.7px;line-height:1.25;text-transform:none;color:#211a14;font-weight:400}
 
 @media (max-width:520px){
   .archive-shell{width:calc(100% - 8px)}
@@ -620,7 +638,7 @@ button{background:none;border:0;padding:0;-webkit-appearance:none;appearance:non
   .main-column,.side-column{gap:12px}
   .news-grid{column-gap:18px}
   .two-up{grid-template-columns:1fr 1fr;gap:12px}
-  .two-up .brief{border-bottom:1px solid rgba(45,36,27,.25)}
+  .two-up .brief{border-bottom:0}
 }
 
 </style>
@@ -857,11 +875,16 @@ button{background:none;border:0;padding:0;-webkit-appearance:none;appearance:non
 
         <!-- 2겹: 휘트록 과거판. 하단 정정/공지 8명의 성 첫 글자가 ASHCROFT. -->
         <article class="newspaper old" id="issueWhitlock" data-issue="whitlock" aria-labelledby="whitlockTitle">
+          <div class="issue-stamp" aria-label="보관본 제2쇄">
+            <span class="stamp-top">Archived Copy · 보관본</span>
+            <strong class="stamp-main">제2쇄</strong>
+            <span class="stamp-sub">Second Impression · 1887</span>
+          </div>
           <header class="masthead">
             <div class="paper-name">The London Evening Chronicle</div>
             <div class="paper-name-ko">런던 이브닝 크로니클</div>
             <div class="paper-subline"><span>Tuesday, 8 March 1887</span><span>One Penny</span></div>
-            <div class="paper-edition">Police Supplement · Second Impression<span class="paper-edition-ko">경찰 보충판 · 제2쇄</span></div>
+            <div class="paper-edition">Police Supplement · Second Impression<span class="paper-edition-ko">경찰 보충판 · 제2쇄 · 보관본</span></div>
           </header>
 
           <section class="lead">
@@ -973,11 +996,16 @@ button{background:none;border:0;padding:0;-webkit-appearance:none;appearance:non
 
         <!-- 3겹: 애시크로프트 과거판. 여기서 종료. 다음 입력창/비밀 버튼 없음. -->
         <article class="newspaper older" id="issueAshcroft" data-issue="ashcroft" aria-labelledby="ashcroftTitle">
+          <div class="issue-stamp" aria-label="보관본 제1쇄">
+            <span class="stamp-top">Archived Copy · 보관본</span>
+            <strong class="stamp-main">제1쇄</strong>
+            <span class="stamp-sub">First Impression · 1879</span>
+          </div>
           <header class="masthead">
             <div class="paper-name">The London Evening Chronicle</div>
             <div class="paper-name-ko">런던 이브닝 크로니클</div>
             <div class="paper-subline"><span>Monday, 3 November 1879</span><span>One Penny</span></div>
-            <div class="paper-edition">Morning Extra · Government Proceedings<span class="paper-edition-ko">호외 조간 · 정부 절차 보도</span></div>
+            <div class="paper-edition">Morning Extra · First Impression · Government Proceedings<span class="paper-edition-ko">호외 조간 · 제1쇄 · 정부 절차 보도</span></div>
           </header>
 
           <section class="lead">
