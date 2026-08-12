@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="A Victorian London phantom-thief interactive letter and mystery introduction." />
+<meta name="description" content="A Victorian London phantom-thief letter, newspaper mystery and hidden archive." />
 <meta name="theme-color" content="#0b0e13" />
 <title>The Shadows of the Fog City — Night's Letter</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -312,92 +312,155 @@ button{background:none;border:0;padding:0;-webkit-appearance:none;appearance:non
 
 #archive{display:none;min-height:100vh;opacity:0;transform:translateY(20px)}
 #archive.visible{display:block;animation:reveal .8s ease forwards}
-.archive-shell{width:min(1100px,calc(100% - 28px));margin:0 auto;padding:26px 0 80px}
-.archive-top{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:22px;color:#c2b6a0;font-size:11px;letter-spacing:.24em;text-transform:uppercase}
-.return-btn{border:1px solid rgba(204,187,156,.28);border-radius:999px;padding:10px 15px;cursor:pointer;color:#ddd3c3;background:rgba(255,255,255,.04);transition:.2s}
-.return-btn:hover{background:rgba(255,255,255,.09);border-color:rgba(204,187,156,.52)}
-.archive-card{
-  border:1px solid rgba(190,165,119,.25);border-radius:28px;overflow:hidden;
-  background:
-    radial-gradient(circle at 86% 10%, rgba(132,27,43,.12), transparent 24%),
-    linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.015)),
-    #0f131a;
-  box-shadow:0 28px 72px rgba(0,0,0,.44);
-}
-.hero{
-  position:relative;min-height:430px;padding:clamp(34px,7vw,78px);display:flex;align-items:flex-end;
-  border-bottom:1px solid rgba(190,165,119,.16);
-  background:
-    linear-gradient(90deg,rgba(6,8,12,.96),rgba(6,8,12,.62) 55%,rgba(6,8,12,.18)),
-    radial-gradient(circle at 80% 30%,rgba(168,178,203,.18),transparent 20%),
-    linear-gradient(145deg,#171c25,#090b10 70%);
-}
-.hero::after{content:"NIGHT";position:absolute;right:clamp(28px,7vw,82px);top:48%;transform:translateY(-50%);color:rgba(187,160,109,.06);font-size:clamp(66px,14vw,180px);letter-spacing:.18em;font-style:italic;pointer-events:none}
-.hero-copy{position:relative;z-index:1;max-width:700px}
-.hero-label{color:#bda778;font-size:11px;letter-spacing:.32em;text-transform:uppercase}
-.hero h1{margin:12px 0 14px;font-size:clamp(42px,8vw,82px);line-height:1.02;font-weight:500;letter-spacing:.05em}
-.hero p{margin:0;color:#cbc3b6;font-size:clamp(14px,2.2vw,18px);line-height:1.9}
-.hero p .ko{font-size:13px;color:rgba(203,195,182,.55);margin-top:8px}
+.archive-shell{width:min(860px,calc(100% - 18px));margin:0 auto;padding:18px 0 86px}
+.archive-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 4px 12px;color:#b8ae9d;font-size:10px;letter-spacing:.12em;text-transform:uppercase}
+.archive-kicker{opacity:.72;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.return-btn{flex:0 0 auto;border:1px solid rgba(204,187,156,.26);border-radius:999px;padding:9px 12px;cursor:pointer;color:#ddd3c3;background:rgba(255,255,255,.035);font-size:10px;letter-spacing:.06em;transition:.2s}
+.return-btn:hover{background:rgba(255,255,255,.08);border-color:rgba(204,187,156,.48)}
 
-.archive-content{padding:clamp(24px,5vw,58px)}
-.section{display:grid;grid-template-columns:190px minmax(0,1fr);gap:clamp(22px,5vw,58px);padding:34px 0;border-bottom:1px solid rgba(190,165,119,.14)}
-.section:last-child{border-bottom:0}
-.section-index{color:#aa966f;font-size:11px;letter-spacing:.26em;text-transform:uppercase}
-.section h2{margin:0 0 14px;font-size:clamp(26px,4vw,42px);font-weight:500;letter-spacing:.04em}
-.section p{margin:0;color:#c8c1b6;line-height:1.9;font-size:15px}
-.section p + p{margin-top:12px}
-.section p .ko{font-size:13px;color:rgba(200,193,182,.55);margin-top:8px}
-.grid2,.grid4{display:grid;gap:14px;margin-top:18px}
-.grid2{grid-template-columns:repeat(2,minmax(0,1fr))}
-.grid4{grid-template-columns:repeat(2,minmax(0,1fr))}
-.info-box{min-height:154px;padding:20px;border:1px solid rgba(190,165,119,.18);border-radius:16px;background:rgba(255,255,255,.028)}
-.info-box h3{margin:0 0 10px;color:#e5dccb;font-size:18px;font-weight:500}
-.info-box .meta{margin-bottom:10px;color:#aa946a;font-size:11px;letter-spacing:.14em;text-transform:uppercase}
-.info-box p{color:#bdb6aa;font-size:14px;line-height:1.8}
-.red-seal{
-  width:84px;height:84px;margin-top:20px;border-radius:48% 52% 46% 54% / 50% 44% 56% 50%;
-  background:radial-gradient(circle at 30% 22%, rgba(255,239,183,.95) 0 9%, rgba(231,197,122,.88) 14%, rgba(195,149,77,.92) 31%, rgba(139,101,46,.98) 64%, rgba(94,63,24,1) 100%);
-  box-shadow:inset 0 7px 12px rgba(255,255,255,.16), inset 0 -10px 14px rgba(78,50,17,.24), 0 10px 24px rgba(74,9,17,.20);
-  position:relative;
+.newspaper-stack{position:relative}
+.newspaper{
+  display:none;position:relative;overflow:hidden;color:#1f1a15;
+  background:
+    radial-gradient(circle at 13% 9%,rgba(255,255,255,.55),transparent 17%),
+    radial-gradient(circle at 84% 42%,rgba(92,64,30,.055),transparent 25%),
+    repeating-linear-gradient(0deg,rgba(70,52,30,.018) 0 1px,transparent 1px 5px),
+    linear-gradient(180deg,#eee9dc 0%,#e5dece 100%);
+  border:1px solid rgba(108,88,57,.42);box-shadow:0 24px 58px rgba(0,0,0,.42),inset 0 0 70px rgba(92,66,31,.08);
+  padding:16px 14px 22px;
 }
-.red-seal::before{
-  content:"";position:absolute;inset:9px;border-radius:50%;
-  background:radial-gradient(circle at 50% 45%, rgba(215,173,95,.86), rgba(158,119,55,.92) 68%, rgba(110,74,28,.96) 100%);
-  box-shadow:inset 0 0 0 2px rgba(103,71,28,.48), inset 0 0 0 7px rgba(215,189,130,.18), inset 0 7px 10px rgba(255,255,255,.10), inset 0 -8px 10px rgba(61,38,12,.20);
+.newspaper.active{display:block;animation:paperIn .62s cubic-bezier(.2,.72,.22,1) both}
+.newspaper.old{background:
+  radial-gradient(circle at 8% 4%,rgba(255,255,255,.34),transparent 15%),
+  radial-gradient(circle at 77% 29%,rgba(104,65,24,.09),transparent 23%),
+  repeating-linear-gradient(0deg,rgba(79,52,22,.022) 0 1px,transparent 1px 4px),
+  linear-gradient(180deg,#dfd3b9 0%,#d3c4a4 100%)}
+.newspaper.older{background:
+  radial-gradient(circle at 15% 8%,rgba(255,255,255,.28),transparent 14%),
+  radial-gradient(circle at 84% 51%,rgba(93,50,17,.10),transparent 26%),
+  repeating-linear-gradient(0deg,rgba(76,48,20,.026) 0 1px,transparent 1px 4px),
+  linear-gradient(180deg,#d5c39d 0%,#c9b58e 100%)}
+.newspaper::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.32;background:linear-gradient(90deg,transparent 0 47%,rgba(92,60,25,.045) 50%,transparent 53% 100%)}
+@keyframes paperIn{from{opacity:0;transform:translateY(13px) scale(.992)}to{opacity:1;transform:none}}
+
+.masthead{text-align:center;border-top:3px double #2b241d;border-bottom:3px double #2b241d;padding:7px 2px 6px;margin-bottom:10px}
+.paper-name{font-size:clamp(23px,8vw,40px);line-height:.96;font-weight:700;letter-spacing:-.035em;text-transform:uppercase}
+.paper-subline{display:flex;justify-content:space-between;gap:8px;margin-top:6px;font-size:8px;letter-spacing:.08em;text-transform:uppercase}
+.paper-subline span{white-space:nowrap}
+.paper-edition{margin-top:4px;font-size:8px;letter-spacing:.15em;text-transform:uppercase;opacity:.72}
+
+.lead{padding:5px 0 12px;border-bottom:2px solid #2c251e}
+.kicker{margin:0 0 4px;text-align:center;font-size:8px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.lead h1{margin:0;text-align:center;font-size:clamp(27px,9.5vw,47px);line-height:.94;letter-spacing:-.035em;text-transform:uppercase}
+.deck{margin:7px auto 0;max-width:680px;text-align:center;font-size:11px;line-height:1.35;font-weight:700}
+.byline{margin-top:7px;text-align:center;font-size:8px;letter-spacing:.08em;text-transform:uppercase}
+
+.news-grid{display:grid;grid-template-columns:1fr;gap:0}
+.news-block{padding:12px 0;border-bottom:1px solid rgba(45,36,27,.55)}
+.news-block h2,.news-block h3{margin:0 0 5px;font-weight:700;text-transform:uppercase;letter-spacing:-.01em}
+.news-block h2{font-size:20px;line-height:1}
+.news-block h3{font-size:15px;line-height:1.05}
+.news-block p{margin:0;font-size:12px;line-height:1.48;text-align:justify;hyphens:auto}
+.news-block p+p{margin-top:6px}
+.news-block .ko-news{display:block;margin-top:5px;color:rgba(38,29,21,.66);font-family:"Noto Serif KR","Malgun Gothic",serif;font-size:10px;line-height:1.6;text-align:left;word-break:keep-all}
+.news-meta{margin-bottom:5px;font-size:7px;letter-spacing:.13em;text-transform:uppercase;opacity:.72}
+.dropcap::first-letter{float:left;font-size:34px;line-height:.78;padding:5px 4px 0 0;font-weight:700}
+
+.two-up{display:grid;grid-template-columns:1fr;gap:0}
+.brief{padding:11px 0;border-bottom:1px solid rgba(45,36,27,.43)}
+.brief:last-child{border-bottom:0}
+.rule-title{display:flex;align-items:center;gap:8px;margin:0 0 6px;font-size:8px;letter-spacing:.15em;text-transform:uppercase}
+.rule-title::before,.rule-title::after{content:"";height:1px;flex:1;background:rgba(45,36,27,.55)}
+
+.notice-box{margin:12px 0 0;border:2px solid rgba(44,35,26,.75);padding:9px 10px;text-align:center}
+.notice-box strong{display:block;font-size:13px;letter-spacing:.05em;text-transform:uppercase}
+.notice-box p{margin:4px 0 0;font-size:10px;line-height:1.45;text-align:center}
+
+.scrap-note{width:88%;margin:13px auto 2px;padding:8px 9px;background:#e8dfcd;border:1px dashed rgba(61,47,35,.45);transform:rotate(-.6deg);text-align:center;font-size:11px;line-height:1.4;box-shadow:0 3px 8px rgba(63,43,23,.08)}
+.scrap-note span{display:inline-block;margin:0 1px;padding:0 2px;background:rgba(255,255,255,.42);font-family:Georgia,"Times New Roman",serif;font-weight:700}
+
+.classifieds,.corrections{padding:13px 0 2px;border-top:3px double #2c251e;margin-top:12px}
+.section-cap{text-align:center;font-size:10px;font-weight:700;letter-spacing:.17em;text-transform:uppercase;margin-bottom:9px}
+.classified-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid rgba(45,36,27,.45);border-left:1px solid rgba(45,36,27,.45)}
+.classified{min-width:0;padding:8px 7px;border-right:1px solid rgba(45,36,27,.45);border-bottom:1px solid rgba(45,36,27,.45)}
+.classified h4{margin:0 0 3px;font-size:10px;line-height:1.05;text-transform:uppercase;letter-spacing:.02em}
+.classified p{margin:0;font-size:8.7px;line-height:1.38;text-align:left}
+.classified .ko-mini{display:block;margin-top:3px;font-size:8px;line-height:1.4;color:rgba(39,30,22,.6);word-break:keep-all}
+
+.correction-list{border-top:1px solid rgba(45,36,27,.48)}
+.correction-item{display:grid;grid-template-columns:76px minmax(0,1fr);gap:8px;padding:7px 0;border-bottom:1px solid rgba(45,36,27,.33)}
+.correction-item strong{font-size:9px;line-height:1.25;text-transform:uppercase}
+.correction-item p{margin:0;font-size:8.7px;line-height:1.4}
+.correction-item .ko-mini{display:block;margin-top:2px;color:rgba(39,30,22,.6);font-size:8px;line-height:1.4;word-break:keep-all}
+
+.imprint{margin-top:14px;padding-top:8px;border-top:1px solid rgba(45,36,27,.46);text-align:center;font-size:7.8px;line-height:1.55;letter-spacing:.035em;text-transform:uppercase}
+.imprint-trigger{display:inline;margin:0;padding:0;border:0;background:transparent;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit;cursor:default;text-decoration:none}
+.imprint-trigger:focus-visible{outline:1px dotted currentColor;outline-offset:2px}
+
+.archive-request{display:none;margin:11px auto 2px;width:min(310px,94%);padding:10px 11px 11px;border:1px solid rgba(45,36,27,.68);background:rgba(239,231,214,.52)}
+.archive-request.open{display:block;animation:requestIn .28s ease both}
+@keyframes requestIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+.archive-request .office{margin-bottom:7px;text-align:center;font-size:8px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.reference-row{display:flex;align-items:center;gap:6px}
+.reference-row label{font-size:8px;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+.reference-row input{min-width:0;flex:1;border:0;border-bottom:1px solid #2b241d;background:transparent;padding:5px 2px 4px;color:#211a14;font-family:Georgia,"Times New Roman",serif;font-size:13px;letter-spacing:.08em;text-transform:uppercase;outline:none}
+.reference-row button{flex:0 0 auto;border:1px solid rgba(43,36,29,.65);padding:6px 8px;background:rgba(42,34,27,.06);color:#211a14;font-size:8px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
+.archive-status{min-height:14px;margin-top:6px;text-align:center;font-size:8px;line-height:1.4;font-style:italic;opacity:.72}
+
+.archive-note{margin:10px 0;padding:8px 9px;border-left:3px solid rgba(45,36,27,.68);font-size:9px;line-height:1.5;background:rgba(255,255,255,.12)}
+.archive-note .ko-mini{display:block;margin-top:3px;color:rgba(39,30,22,.62);font-size:8px;line-height:1.45;word-break:keep-all}
+
+.final-closing{padding:25px 0 13px;text-align:center}
+.final-closing .printer{font-size:7.8px;line-height:1.5;letter-spacing:.05em;text-transform:uppercase;opacity:.7}
+.final-ornament{width:62px;height:1px;margin:17px auto 15px;background:linear-gradient(90deg,transparent,#30271f,transparent)}
+.clever{margin:0;font-size:18px;font-style:italic;letter-spacing:.04em}
+
+@media (min-width:680px){
+  .archive-shell{width:min(960px,calc(100% - 34px));padding-top:26px}
+  .newspaper{padding:24px 28px 30px}
+  .news-grid{grid-template-columns:minmax(0,1.55fr) minmax(220px,.85fr);column-gap:18px}
+  .news-grid>.main-column{padding-right:18px;border-right:1px solid rgba(45,36,27,.5)}
+  .news-grid>.side-column{padding-left:0}
+  .two-up{grid-template-columns:1fr 1fr;gap:16px}
+  .two-up .brief{border-bottom:0}
+  .classified-grid{grid-template-columns:repeat(4,1fr)}
+  .correction-item{grid-template-columns:110px minmax(0,1fr)}
+  .paper-subline{font-size:9px}
+  .news-block p{font-size:13px;line-height:1.55}
+  .news-block .ko-news{font-size:10.5px}
 }
+
 @media (max-width:760px){
   .envelope-wrap{width:min(650px,96vw)}
   .letter-sheet{left:4%;right:4%;padding:30px 24px}
   .envelope.open .letter-sheet{transform:translateY(-12%) scale(1)}
   #intro.letter-open{padding:26px 10px 96px}
   #intro.letter-open .envelope-wrap{width:100%}
-  #intro.letter-open .letter-sheet{
-    padding:36px 18px 52px;
-    border-radius:2px;
-  }
+  #intro.letter-open .letter-sheet{padding:36px 18px 52px;border-radius:2px}
   #intro.letter-open .en{font-size:clamp(25px,7vw,31px);line-height:1.38}
   #intro.letter-open .ko{font-size:12px;line-height:1.65}
-  .archive-top{align-items:flex-start;flex-direction:column}
-  .section{grid-template-columns:1fr;gap:10px}
-  .grid2,.grid4{grid-template-columns:1fr}
 }
 @media (max-width:520px){
   .envelope{aspect-ratio:1.58/1}
   .seal-btn{width:96px;height:96px}
   .envelope.open .letter-sheet{top:2%;transform:translateY(-2%) scale(1);max-height:90vh}
   #intro.letter-open .envelope{aspect-ratio:auto}
-  #intro.letter-open .letter-sheet{
-    top:auto;
-    max-height:none;
-    transform:none;
-    overflow:visible;
-    padding:32px 15px 48px;
-  }
+  #intro.letter-open .letter-sheet{top:auto;max-height:none;transform:none;overflow:visible;padding:32px 15px 48px}
   #intro.letter-open .line{margin-bottom:17px}
   #intro.letter-open .hint{margin-top:20px}
-  .archive-content{padding:20px}
-  .hero{padding:34px 24px;min-height:430px}
+  .archive-shell{width:calc(100% - 10px);padding-top:10px}
+  .archive-top{margin:0 3px 9px;font-size:9px}
+  .archive-kicker{max-width:58vw}
+  .return-btn{padding:8px 10px;font-size:9px}
+  .newspaper{padding:13px 11px 18px}
+  .lead h1{font-size:clamp(25px,10vw,39px)}
+  .news-block h2{font-size:18px}
+  .classified{padding:7px 6px}
+  .classified h4{font-size:9.5px}
+  .classified p{font-size:8.3px}
+  .correction-item{grid-template-columns:69px minmax(0,1fr);gap:6px}
 }
+
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
 }
@@ -555,154 +618,308 @@ button{background:none;border:0;padding:0;-webkit-appearance:none;appearance:non
     </div>
   </section>
 
-  <main id="archive" aria-labelledby="archiveTitle">
+  <main id="archive" aria-labelledby="currentTitle">
     <div class="archive-shell">
       <div class="archive-top">
-        <span>Scotland Yard · Restricted Dossier · The Fog City Files</span>
-        <button class="return-btn" id="returnButton" type="button">Return to the Letter · 편지로 돌아가기</button>
+        <span class="archive-kicker">Scotland Yard · Morning Desk Copy</span>
+        <button class="return-btn" id="returnButton" type="button">← Letter · 편지</button>
       </div>
 
-      <article class="archive-card">
-        <header class="hero">
-          <div class="hero-copy">
-            <div class="hero-label">The Shadows of the Fog City</div>
-            <h1 id="archiveTitle">The Shadows of the Fog City</h1>
-            <p>
-              Late nineteenth-century London. Rain dims the gaslights. A silver-haired thief leaves a golden seal at every empty case.
-              <span class="ko">19세기 말 런던. 비가 가스등을 흐리고, 은발의 괴도는 빈 진열대마다 황금빛 봉인을 남깁니다.</span>
-            </p>
+      <div class="newspaper-stack" id="newspaperStack">
+        <!-- 1겹: 현재 신문. 큰 기사는 레드헤링, 하단 광고 8개의 첫 글자가 WHITLOCK. -->
+        <article class="newspaper active" id="issueCurrent" data-issue="current" aria-labelledby="currentTitle">
+          <header class="masthead">
+            <div class="paper-name">The London Evening Chronicle</div>
+            <div class="paper-subline"><span>Thursday, 17 November 1898</span><span>One Penny</span></div>
+            <div class="paper-edition">Late City Edition · Fog expected after dusk</div>
+          </header>
+
+          <section class="lead">
+            <div class="kicker">Crime &amp; Society · Special Report</div>
+            <h1 id="currentTitle">Night Baffles the Yard Again</h1>
+            <div class="deck">Anonymous warning names Blackwood Hall; a witness describes a tall silver-haired figure near the western roofline.</div>
+            <div class="byline">From our Crime Correspondent</div>
+          </section>
+
+          <div class="news-grid">
+            <div class="main-column">
+              <section class="news-block">
+                <div class="news-meta">Blackwood Hall · Kensington</div>
+                <h2>A Thief Announces His Visit</h2>
+                <p class="dropcap">A second note attributed to the burglar styling himself “Night” reached Blackwood Hall yesterday. It names the Winter Lion’s Eye, an ivory-and-gold antiquity due to remain on private display through midnight. Lord Blackwood has refused to remove the piece, calling the warning “theatre for the newspapers.”</p>
+                <span class="ko-news">‘나이트’라 자칭하는 절도범의 두 번째 예고장이 어제 블랙우드 홀에 도착했다. 예고장은 자정까지 비공개 전시될 상아와 금제 유물 ‘겨울사자의 눈’을 지목했다. 블랙우드 경은 이를 “신문을 위한 연극”이라며 유물을 옮기지 않겠다고 밝혔다.</span>
+                <p>One groom claims he saw a man of unusual height crossing the mews shortly before the last rain. He remembers pale hair and says the stranger steadied himself with his left hand. Another servant, questioned separately, insists the man never removed his hat.</p>
+                <span class="ko-news">마부 한 명은 마지막 비가 내리기 직전 마구간 뒤편을 가로지르는 큰 키의 남자를 보았다고 주장했다. 그는 옅은 머리색과 왼손을 짚는 동작을 기억했다. 그러나 따로 조사받은 다른 하인은 그 남자가 모자를 벗은 적이 없다고 진술했다.</span>
+              </section>
+
+              <section class="two-up">
+                <div class="brief news-block">
+                  <div class="news-meta">Police &amp; Courts</div>
+                  <h3>New Yard Man Talks Locks</h3>
+                  <p>Arthur Whitlock, recently transferred to Scotland Yard, has drawn notice for an inconvenient talent with locks and forged papers. Asked how a thief might leave Blackwood Hall, he reportedly answered, “Not by the door everyone is watching.”</p>
+                  <span class="ko-news">최근 스코틀랜드 야드로 전입한 아서 휘트록은 자물쇠와 위조 문서를 다루는 유별난 솜씨로 눈길을 끌고 있다. 블랙우드 홀에서 범인이 어떻게 빠져나갈 것 같으냐는 질문에는 “모두가 지켜보는 문으로는 아니겠지요”라고 답했다고 한다.</span>
+                </div>
+                <div class="brief news-block">
+                  <div class="news-meta">Arts &amp; Society</div>
+                  <h3>Vale Declines a Provenance</h3>
+                  <p>Lucien Vale, the young appraiser favoured by several private collections, examined three objects at Blackwood Hall this week. He certified two and declined to state an opinion on the history of the third.</p>
+                  <span class="ko-news">여러 개인 수집가가 찾는 젊은 감정사 루시언 베일이 이번 주 블랙우드 홀의 세 유물을 살폈다. 두 점은 감정을 마쳤으나, 나머지 한 점의 내력에 대해서는 의견을 밝히지 않았다.</span>
+                </div>
+              </section>
+
+              <section class="news-block">
+                <div class="news-meta">Public Notices</div>
+                <h3>Repairs, Gas &amp; Closing Hours</h3>
+                <p>The Kensington Gas Company advises reduced pressure in the western district between 11.40 p.m. and 12.15 a.m. Stone repairs continue along the west face of Blackwood Hall; exterior scaffolding is to remain until Friday. Guests attending the Blackwood charitable supper are requested to depart by 11.30 p.m.</p>
+                <span class="ko-news">켄싱턴 가스 회사는 밤 11시 40분부터 12시 15분까지 서부 구역의 가스 압력이 낮아질 수 있다고 알렸다. 블랙우드 홀 서쪽 외벽은 석재 보수로 비계가 설치되어 있으며 금요일까지 철거되지 않는다. 자선 만찬 참석객은 밤 11시 30분까지 퇴장하도록 안내됐다.</span>
+              </section>
+            </div>
+
+            <aside class="side-column">
+              <section class="news-block">
+                <div class="rule-title">City Briefs</div>
+                <h3>Seal Found in Empty Case</h3>
+                <p>Police confirm that a red wax impression has appeared at more than one scene attributed to Night. No maker’s mark has been publicly identified.</p>
+                <span class="ko-news">경찰은 나이트의 범행으로 추정되는 여러 현장에서 붉은 왁스 인장이 발견됐다고 확인했다. 공개적으로 확인된 제작자 표식은 없다.</span>
+              </section>
+
+              <section class="news-block">
+                <h3>Spiritualist Promises the Thief’s Name</h3>
+                <p>Madame Violette of Bloomsbury announces a private séance at nine, claiming “the dead know the face behind the mask.” Seats: two shillings.</p>
+                <span class="ko-news">블룸즈버리의 마담 비올레트가 밤 아홉 시 비공개 강령회를 열며 “죽은 자는 가면 뒤의 얼굴을 안다”고 선전했다. 좌석은 2실링.</span>
+              </section>
+
+              <div class="notice-box">
+                <strong>Blackwood Collection</strong>
+                <p>Private viewing closes at 11.30 p.m.<br>West gallery entrance by invitation only.</p>
+              </div>
+
+              <div class="scrap-note" aria-label="A clipped anonymous note">
+                <span>Some</span> <span>records</span> <span>are not lost.</span><br>
+                <span>They are hidden.</span>
+              </div>
+            </aside>
           </div>
-        </header>
 
-        <div class="archive-content">
-          <section class="section">
-            <div class="section-index">01 · World</div>
-            <div>
-              <h2>Twelve Relics, One Phantom</h2>
-              <p>
-                The Ashcroft family fell under a charge of treason. Twelve heirlooms were scattered across London.
-                <span class="ko">애시크로프트 가문은 반역의 누명 아래 몰락했고, 열두 점의 유물은 런던 전역으로 흩어졌습니다.</span>
-              </p>
-              <p>
-                The thief called Night retrieves them one by one.
-                <span class="ko">나이트라 불리는 괴도는 그것들을 하나씩 회수합니다.</span>
-              </p>
-              <div class="red-seal" aria-hidden="true"></div>
+          <section class="classifieds" aria-label="Classified advertisements">
+            <div class="section-cap">Classified Advertisements</div>
+            <div class="classified-grid">
+              <div class="classified"><h4>Watch Repairs</h4><p>Marine and pocket watches cleaned, balanced and restored. H. Bell, Holborn.</p><span class="ko-mini">회중시계·선박용 시계 수리 및 복원.</span></div>
+              <div class="classified"><h4>Household Staff</h4><p>Experienced maids, footmen and cooks supplied with references. Hanover Agency.</p><span class="ko-mini">추천서를 갖춘 하인·하녀·요리사 알선.</span></div>
+              <div class="classified"><h4>Ink &amp; Stationery</h4><p>Ledger books, sealing wax and permanent black ink. Imperial Stationers.</p><span class="ko-mini">장부·봉랍·영구 흑색 잉크 판매.</span></div>
+              <div class="classified"><h4>Tailoring</h4><p>Morning coats and evening suits altered within forty-eight hours. T. Marsh.</p><span class="ko-mini">모닝코트·야회복 48시간 내 수선.</span></div>
+              <div class="classified"><h4>Luggage</h4><p>Travelling trunks, document cases and leather valises. Locks fitted to order.</p><span class="ko-mini">여행용 트렁크·서류가방·가죽 가방 주문 제작.</span></div>
+              <div class="classified"><h4>Optical Goods</h4><p>Spectacles repaired while you wait. Reading lenses from sixpence.</p><span class="ko-mini">안경 즉석 수리·독서용 렌즈 판매.</span></div>
+              <div class="classified"><h4>Carriages</h4><p>Night hire to all districts. Quiet horses for late calls. C. North &amp; Sons.</p><span class="ko-mini">심야 마차 대여·런던 전 구역 운행.</span></div>
+              <div class="classified"><h4>Kitchen Ranges</h4><p>Coal ranges swept, repaired and fitted. Immediate attendance in Kensington.</p><span class="ko-mini">석탄 레인지 청소·수리·설치.</span></div>
             </div>
           </section>
 
-          <section class="section">
-            <div class="section-index">02 · Mystery</div>
-            <div>
-              <h2>Two Silver-Haired Men</h2>
-              <p>
-                Night and Arthur Whitlock share silver hair, a similar frame, and a habit of using the left hand.
-                <span class="ko">나이트와 아서 휘트록은 은발, 비슷한 체격, 그리고 왼손을 쓰는 습관을 공유합니다.</span>
-              </p>
-              <p>
-                Arthur is always a little too close to the truth.
-                <span class="ko">아서는 언제나 진실에 조금 지나치게 가까이 있습니다.</span>
-              </p>
-              <div class="grid2">
-                <div class="info-box">
-                  <div class="meta">Night</div>
-                  <h3>The Phantom Thief</h3>
-                  <p>
-                    Elegant, provocative, and calm.
-                    <span class="ko">우아하고 도발적이며 침착합니다.</span>
-                  </p>
+          <footer class="imprint">
+            Printed by Morland &amp; Co., Fleet Street, London.<br>
+            <button class="imprint-trigger" type="button" data-open-request="current">Back numbers supplied upon reference.</button>
+          </footer>
+
+          <div class="archive-request" id="requestCurrent" aria-live="polite">
+            <div class="office">Morland &amp; Co. · Back-Number Office</div>
+            <div class="reference-row">
+              <label for="referenceCurrent">Reference</label>
+              <input id="referenceCurrent" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-label="Back-number reference" />
+              <button type="button" data-submit-reference="current">Request</button>
+            </div>
+            <div class="archive-status" id="statusCurrent"></div>
+          </div>
+        </article>
+
+        <!-- 2겹: 휘트록 과거판. 하단 정정/공지 8명의 성 첫 글자가 ASHCROFT. -->
+        <article class="newspaper old" id="issueWhitlock" data-issue="whitlock" aria-labelledby="whitlockTitle">
+          <header class="masthead">
+            <div class="paper-name">The London Evening Chronicle</div>
+            <div class="paper-subline"><span>Tuesday, 8 March 1887</span><span>One Penny</span></div>
+            <div class="paper-edition">Police Supplement · Second Impression</div>
+          </header>
+
+          <section class="lead">
+            <div class="kicker">Police Supplement</div>
+            <h1 id="whitlockTitle">Locksmith Held Over Burglar’s Plans</h1>
+            <div class="deck">Drawings seized from a Clerkenwell workshop are alleged to match mechanisms used in two recent housebreakings.</div>
+            <div class="byline">Proceedings at Bow Street</div>
+          </section>
+
+          <div class="news-grid">
+            <div class="main-column">
+              <section class="news-block">
+                <div class="news-meta">Bow Street · Evidence Heard</div>
+                <h2>Whitlock Denies Supplying Designs</h2>
+                <p class="dropcap">Mr. Edmund Whitlock, a locksmith of long standing, was questioned yesterday after police produced copied designs for private cabinet and strong-room locks. The prosecution alleges the drawings passed from his workshop to a burglar not yet in custody. Whitlock denied knowingly providing any such papers.</p>
+                <span class="ko-news">오랫동안 자물쇠 일을 해온 에드먼드 휘트록이 어제 조사를 받았다. 경찰은 개인 금고와 진열장 자물쇠 도면의 사본을 증거로 제시했으며, 검찰은 이 도면이 아직 체포되지 않은 절도범에게 휘트록의 작업장에서 넘어갔다고 주장했다. 휘트록은 어떤 도면도 고의로 제공한 적이 없다고 부인했다.</span>
+                <p>A clerk testified that one sheet bore Whitlock’s workshop notation. Defence counsel replied that the notation was commonly copied onto repair estimates and does not establish who prepared the seized sheet.</p>
+                <span class="ko-news">한 서기는 도면 한 장에 휘트록 작업장의 표기가 있었다고 증언했다. 변호 측은 그 표기가 수리 견적서에도 흔히 복사되며, 압수된 문서를 누가 작성했는지는 증명하지 못한다고 반박했다.</span>
+              </section>
+
+              <section class="two-up">
+                <div class="brief news-block">
+                  <div class="news-meta">Three Days Later</div>
+                  <h3>Date on Seized Paper Disputed</h3>
+                  <p>A paper entered as evidence bears a watermark introduced by its manufacturer several months after the date written across the drawing. Police say the discrepancy may be clerical.</p>
+                  <span class="ko-news">증거로 제출된 문서의 워터마크가 도면에 적힌 날짜보다 몇 달 뒤에야 사용되기 시작한 것이라는 지적이 나왔다. 경찰은 단순한 사무 착오일 수 있다고 밝혔다.</span>
                 </div>
-                <div class="info-box">
-                  <div class="meta">Arthur Whitlock</div>
-                  <h3>The Suspected Partner</h3>
-                  <p>
-                    Charming, clever, and difficult to read.
-                    <span class="ko">매력적이고 영리하며, 속을 읽기 어렵습니다.</span>
-                  </p>
+                <div class="brief news-block">
+                  <div class="news-meta">Court Office</div>
+                  <h3>One Exhibit Withdrawn</h3>
+                  <p>The Yard has temporarily withdrawn one exhibit pending examination. Officials declined to identify the document or say when it will be returned to the case.</p>
+                  <span class="ko-news">스코틀랜드 야드는 감정을 이유로 증거물 한 점을 임시 철회했다. 당국은 어떤 문서인지, 언제 다시 사건 기록에 포함될지는 밝히지 않았다.</span>
                 </div>
+              </section>
+
+              <section class="news-block">
+                <div class="news-meta">Editorial Note</div>
+                <h3>No Further Hearing Announced</h3>
+                <p>No date for a further public hearing had been posted by press time. The police register continues to list the matter as active, though the corresponding evidence index could not be inspected yesterday.</p>
+                <span class="ko-news">마감 시각까지 추가 공개 심리 날짜는 게시되지 않았다. 경찰 등록부에는 사건이 계속 진행 중인 것으로 남아 있으나, 이에 대응하는 증거 색인은 어제 열람할 수 없었다.</span>
+              </section>
+            </div>
+
+            <aside class="side-column">
+              <section class="news-block">
+                <div class="rule-title">Elsewhere in London</div>
+                <h3>Masked Burglar Rumour Rejected</h3>
+                <p>Police deny reports that the unidentified burglar wears a theatrical mask, calling the description an invention of penny papers.</p>
+                <span class="ko-news">경찰은 미확인 절도범이 연극용 가면을 쓴다는 소문을 부인하며 값싼 신문이 만들어낸 이야기라고 밝혔다.</span>
+              </section>
+              <section class="news-block">
+                <h3>Workshop Fire in Islington</h3>
+                <p>A small fire damaged a cabinet-maker’s store. No connection with the Whitlock inquiry has been established.</p>
+                <span class="ko-news">이즐링턴의 가구 제작 작업장에서 소규모 화재가 발생했다. 휘트록 사건과의 관련성은 확인되지 않았다.</span>
+              </section>
+              <div class="archive-note">
+                The Chronicle’s police supplements are separately indexed from the ordinary city edition.
+                <span class="ko-mini">본지의 경찰 보충판은 일반 시내판과 별도의 색인으로 보관된다.</span>
               </div>
+            </aside>
+          </div>
+
+          <section class="corrections" aria-label="Notices and corrections">
+            <div class="section-cap">Notices &amp; Corrections</div>
+            <div class="correction-list">
+              <div class="correction-item"><strong>Aldridge</strong><p>Marriage notice: the ceremony will take place on Thursday, not Tuesday.<span class="ko-mini">혼인 공고의 요일을 화요일에서 목요일로 정정.</span></p></div>
+              <div class="correction-item"><strong>Sloane</strong><p>Change of address: correspondence is to be directed to Russell Square.<span class="ko-mini">우편물 수신 주소를 러셀 스퀘어로 변경.</span></p></div>
+              <div class="correction-item"><strong>Hargreaves</strong><p>The reported loss of a silver cane has been withdrawn; the article was recovered.<span class="ko-mini">은제 지팡이 분실 신고 철회. 물품 회수 완료.</span></p></div>
+              <div class="correction-item"><strong>Copley</strong><p>Printer’s error: “£60” in yesterday’s sale notice should have read “£6.”<span class="ko-mini">전날 매각 공고의 60파운드를 6파운드로 정정.</span></p></div>
+              <div class="correction-item"><strong>Rook</strong><p>A death notice submitted in error has been withdrawn at the family’s request.<span class="ko-mini">가족 요청에 따라 잘못 접수된 사망 공고 철회.</span></p></div>
+              <div class="correction-item"><strong>Ormond</strong><p>Lost correspondence recovered unopened near Chancery Lane.<span class="ko-mini">챈서리 레인 인근에서 분실 우편물을 미개봉 상태로 회수.</span></p></div>
+              <div class="correction-item"><strong>Finch</strong><p>Estate auction postponed pending confirmation of title.<span class="ko-mini">소유권 확인을 위해 유산 경매 연기.</span></p></div>
+              <div class="correction-item"><strong>Trelawney</strong><p>The name printed as “Trelawny” yesterday should read as above.<span class="ko-mini">전날 잘못 인쇄된 성의 철자를 위와 같이 정정.</span></p></div>
             </div>
           </section>
 
-          <section class="section">
-            <div class="section-index">03 · Figures</div>
-            <div>
-              <h2>The Faces in the Record</h2>
-              <div class="grid4">
-                <div class="info-box">
-                  <div class="meta">Art Appraiser</div>
-                  <h3>Lucien Vale</h3>
-                  <p>
-                    A young appraiser known as the ghost of London's salons.
-                    <span class="ko">런던 사교계의 유령이라 불리는 젊은 감정사입니다.</span>
-                  </p>
+          <footer class="imprint">
+            Printed for the Chronicle Police Supplement, Fleet Street.<br>
+            <button class="imprint-trigger" type="button" data-open-request="whitlock">Earlier city editions retained by reference only.</button>
+          </footer>
+
+          <div class="archive-request" id="requestWhitlock" aria-live="polite">
+            <div class="office">Chronicle Archive · Earlier City Editions</div>
+            <div class="reference-row">
+              <label for="referenceWhitlock">Reference</label>
+              <input id="referenceWhitlock" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-label="Earlier edition reference" />
+              <button type="button" data-submit-reference="whitlock">Request</button>
+            </div>
+            <div class="archive-status" id="statusWhitlock"></div>
+          </div>
+        </article>
+
+        <!-- 3겹: 애시크로프트 과거판. 여기서 종료. 다음 입력창/비밀 버튼 없음. -->
+        <article class="newspaper older" id="issueAshcroft" data-issue="ashcroft" aria-labelledby="ashcroftTitle">
+          <header class="masthead">
+            <div class="paper-name">The London Evening Chronicle</div>
+            <div class="paper-subline"><span>Monday, 3 November 1879</span><span>One Penny</span></div>
+            <div class="paper-edition">Morning Extra · Government Proceedings</div>
+          </header>
+
+          <section class="lead">
+            <div class="kicker">Government &amp; Estates</div>
+            <h1 id="ashcroftTitle">Treason Charge Against House of Ashcroft</h1>
+            <div class="deck">Crown officers seize papers and property after allegations of unlawful correspondence with foreign agents.</div>
+            <div class="byline">Special Parliamentary Correspondence</div>
+          </section>
+
+          <div class="news-grid">
+            <div class="main-column">
+              <section class="news-block">
+                <div class="news-meta">Westminster · Official Statement</div>
+                <h2>A Great House Under Seizure</h2>
+                <p class="dropcap">Property belonging to the Ashcroft family has been placed under Crown control following accusations of treasonous correspondence. Officials displayed several copied letters but declined to permit examination of the originals. Counsel acting for the family protested that portions of the correspondence had been separated from their context.</p>
+                <span class="ko-news">애시크로프트 가문은 반역성 서신을 주고받았다는 혐의로 재산을 왕실에 압류당했다. 당국은 서신 사본 여러 장을 공개했으나 원본 열람은 허가하지 않았다. 가문 측 변호인은 일부 문장이 앞뒤 맥락에서 분리됐다고 항의했다.</span>
+                <p>No final judgment had been entered at the time this edition went to press. Nevertheless, household accounts, artworks and antiquities were already being catalogued for disposal under provisional order.</p>
+                <span class="ko-news">본판 마감 시각까지 최종 판결은 내려지지 않았다. 그럼에도 가계 장부와 미술품, 고미술품은 임시 명령에 따라 이미 매각 목록에 오르고 있었다.</span>
+              </section>
+
+              <section class="news-block">
+                <div class="news-meta">Sale Rooms · Private Collections</div>
+                <h3>Ashcroft Effects to Be Dispersed</h3>
+                <p>Selected objects from the seized estate are to pass through several private sales rather than a single public auction. Among the catalogue descriptions examined by this paper is an ivory-and-old-gold jewel styled <em>The Winter Lion’s Eye</em>. Purchasers’ names will not appear in the printed public list.</p>
+                <span class="ko-news">압류된 가문의 일부 물품은 한 번의 공개 경매가 아니라 여러 비공개 매각을 거쳐 처분될 예정이다. 본지가 확인한 목록에는 상아와 오래된 금으로 만든 ‘겨울사자의 눈’이 포함돼 있다. 구매자 이름은 공개 인쇄 목록에 실리지 않는다.</span>
+              </section>
+
+              <section class="two-up">
+                <div class="brief news-block">
+                  <div class="news-meta">12 November 1879</div>
+                  <h3>Fire at Former Ashcroft Residence</h3>
+                  <p>A severe night fire damaged the principal residence after seizure of the property. Identification of remains recovered from the eastern rooms has not been completed.</p>
+                  <span class="ko-news">재산 압류 후 애시크로프트의 본저택에서 심야 대형 화재가 발생했다. 동쪽 방들에서 수습된 시신의 신원 확인은 아직 완료되지 않았다.</span>
                 </div>
-                <div class="info-box">
-                  <div class="meta">Investigator</div>
-                  <h3>Arthur Whitlock</h3>
-                  <p>
-                    Skilled with locks, forged papers, and crime scenes.
-                    <span class="ko">자물쇠, 위조 문서, 그리고 범죄 현장 분석에 능합니다.</span>
-                  </p>
+                <div class="brief news-block">
+                  <div class="news-meta">13 November 1879 · Correction</div>
+                  <h3>Casualty List Withheld</h3>
+                  <p>Yesterday’s report incorrectly described the official casualty list as complete. Authorities state that the list remains provisional pending identification.</p>
+                  <span class="ko-news">어제 본지는 공식 사상자 명단이 확정됐다고 보도했으나 이는 잘못이었다. 당국은 신원 확인이 끝날 때까지 명단이 잠정 상태라고 밝혔다.</span>
                 </div>
-                <div class="info-box">
-                  <div class="meta">Lead Detective</div>
-                  <h3>The Inspector</h3>
-                  <p>
-                    She hunts Night across the city.
-                    <span class="ko">그녀는 도시를 가로질러 나이트를 추적합니다.</span>
-                  </p>
-                </div>
-                <div class="info-box">
-                  <div class="meta">Authorities & Nobility</div>
-                  <h3>Those Who Bury the Truth</h3>
-                  <p>
-                    Superiors and collectors with much to hide.
-                    <span class="ko">숨겨야 할 것이 많은 상관들과 수집가들입니다.</span>
-                  </p>
-                </div>
+              </section>
+
+              <section class="news-block">
+                <div class="news-meta">Records Office</div>
+                <h3>Several Estate Papers Unavailable</h3>
+                <p>Requests to inspect the original seizure inventory were refused this morning. A clerk stated that portions had been transferred for “administrative review,” though no receiving office was named.</p>
+                <span class="ko-news">오늘 아침 압류 당시의 원본 재산 목록 열람 요청이 거부됐다. 한 서기는 일부 기록이 “행정 검토”를 위해 이관됐다고 설명했으나, 어느 부서로 넘겨졌는지는 밝히지 않았다.</span>
+              </section>
+            </div>
+
+            <aside class="side-column">
+              <section class="news-block">
+                <div class="rule-title">Rumour &amp; Report</div>
+                <h3>Foreign Flight Alleged</h3>
+                <p>An evening paper claims that an unnamed Ashcroft relation fled for France before the seizure. No passenger record has been produced.</p>
+                <span class="ko-news">한 석간지는 이름이 밝혀지지 않은 애시크로프트 친족이 압류 직전 프랑스로 도피했다고 주장했으나, 승선 기록은 제시하지 못했다.</span>
+              </section>
+              <section class="news-block">
+                <h3>Occult Society Denies Connection</h3>
+                <p>A fashionable spiritualist circle has denied rumours that Ashcroft gatherings involved séances or forbidden rites.</p>
+                <span class="ko-news">유명 강령술 사교모임은 애시크로프트 저택에서 강령회나 금지된 의식이 열렸다는 소문을 부인했다.</span>
+              </section>
+              <div class="notice-box">
+                <strong>Estate Catalogue Notice</strong>
+                <p>Descriptions are provisional.<br>Titles of ownership remain under review.</p>
               </div>
+            </aside>
+          </div>
+
+          <section class="corrections" aria-label="Small notices from the archived edition">
+            <div class="section-cap">From the Small Print</div>
+            <div class="correction-list">
+              <div class="correction-item"><strong>Property</strong><p>Several lots formerly described as “Crown effects” are now listed only as “property under order.”<span class="ko-mini">일부 물품의 표기가 ‘왕실 귀속품’에서 ‘명령에 따라 관리 중인 재산’으로 변경됐다.</span></p></div>
+              <div class="correction-item"><strong>Inventory</strong><p>The public index omits purchaser names and certain prior-owner references.<span class="ko-mini">공개 색인에서는 구매자 이름과 일부 이전 소유자 표기가 빠져 있다.</span></p></div>
+              <div class="correction-item"><strong>Fire</strong><p>The eastern stair was reported impassable before the brigade entered the house.<span class="ko-mini">소방대 진입 전부터 동쪽 계단은 통행 불가 상태였다고 기록됐다.</span></p></div>
             </div>
           </section>
 
-          <section class="section">
-            <div class="section-index">04 · Stages</div>
-            <div>
-              <h2>Where the Story Breathes</h2>
-              <div class="grid4">
-                <div class="info-box">
-                  <h3>Scotland Yard</h3>
-                  <p>
-                    Damp files, cold desks, and stale coffee.
-                    <span class="ko">축축한 서류, 차가운 책상, 식어버린 커피가 있는 곳입니다.</span>
-                  </p>
-                </div>
-                <div class="info-box">
-                  <h3>Lucien's Rooms</h3>
-                  <p>
-                    Cedar, wax, and broken beauty.
-                    <span class="ko">삼나무와 밀랍, 그리고 깨진 아름다움이 머무는 공간입니다.</span>
-                  </p>
-                </div>
-                <div class="info-box">
-                  <h3>Private Mansions</h3>
-                  <p>
-                    Velvet curtains and polished lies.
-                    <span class="ko">벨벳 커튼과 매끈한 거짓말이 공존하는 장소입니다.</span>
-                  </p>
-                </div>
-                <div class="info-box">
-                  <h3>Rooftops & Alleys</h3>
-                  <p>
-                    Wet stone and the sound of pursuit.
-                    <span class="ko">젖은 돌바닥과 추격의 발소리가 남는 밤의 길입니다.</span>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
-        </div>
-      </article>
+          <div class="final-closing">
+            <div class="printer">Printed for the Evening Chronicle, Fleet Street, London.</div>
+            <div class="final-ornament" aria-hidden="true"></div>
+            <p class="clever">Clever.</p>
+          </div>
+        </article>
+      </div>
     </div>
   </main>
 
@@ -728,7 +945,9 @@ const investigationModal = document.getElementById('investigationModal');
 const investigationStart = document.getElementById('investigationStart');
 const investigationCancel = document.getElementById('investigationCancel');
 const marks = document.querySelectorAll('.mark');
+const issues = document.querySelectorAll('.newspaper');
 let currentStep = 1;
+let activeIssue = 'current';
 
 function openInvestigationModal() {
   investigationModal.classList.add('show');
@@ -739,10 +958,25 @@ function closeInvestigationModal() {
   investigationModal.classList.remove('show');
 }
 
+function showIssue(issueName) {
+  activeIssue = issueName;
+  issues.forEach(issue => issue.classList.toggle('active', issue.dataset.issue === issueName));
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function resetArchive() {
+  activeIssue = 'current';
+  showIssue('current');
+  document.querySelectorAll('.archive-request').forEach(panel => panel.classList.remove('open'));
+  document.querySelectorAll('.archive-request input').forEach(input => input.value = '');
+  document.querySelectorAll('.archive-status').forEach(status => status.textContent = '');
+}
+
 function beginInvestigation() {
   closeInvestigationModal();
   intro.classList.add('hidden');
   archive.classList.add('visible');
+  resetArchive();
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
@@ -760,14 +994,11 @@ marks.forEach(mark => {
       openInvestigationModal();
       return;
     }
-
     const step = Number(mark.dataset.step);
     if (step === currentStep) {
       mark.classList.add('done');
       currentStep += 1;
-      if (currentStep === 6) {
-        openInvestigationModal();
-      }
+      if (currentStep === 6) openInvestigationModal();
     } else {
       mark.classList.remove('error');
       void mark.offsetWidth;
@@ -782,9 +1013,7 @@ investigationModal.addEventListener('click', (event) => {
   if (event.target === investigationModal) closeInvestigationModal();
 });
 document.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape' && investigationModal.classList.contains('show')) {
-    closeInvestigationModal();
-  }
+  if (event.key === 'Escape' && investigationModal.classList.contains('show')) closeInvestigationModal();
 });
 
 returnButton.addEventListener('click', () => {
@@ -794,12 +1023,69 @@ returnButton.addEventListener('click', () => {
   intro.classList.remove('letter-open');
   closeInvestigationModal();
   currentStep = 1;
-  marks.forEach(m => {
-    m.classList.remove('done','error');
-  });
+  marks.forEach(m => m.classList.remove('done','error'));
+  resetArchive();
   window.scrollTo({top:0,behavior:'smooth'});
 });
 
+function normaliseReference(value) {
+  return value.toUpperCase().replace(/[^A-Z]/g, '');
+}
+
+const archiveRules = {
+  current: {
+    panel: document.getElementById('requestCurrent'),
+    input: document.getElementById('referenceCurrent'),
+    status: document.getElementById('statusCurrent'),
+    answer: 'WHITLOCK',
+    next: 'whitlock',
+    found: 'One copy located.'
+  },
+  whitlock: {
+    panel: document.getElementById('requestWhitlock'),
+    input: document.getElementById('referenceWhitlock'),
+    status: document.getElementById('statusWhitlock'),
+    answer: 'ASHCROFT',
+    next: 'ashcroft',
+    found: 'One earlier edition located.'
+  }
+};
+
+document.querySelectorAll('[data-open-request]').forEach(trigger => {
+  trigger.addEventListener('click', () => {
+    const key = trigger.dataset.openRequest;
+    const rule = archiveRules[key];
+    if (!rule || activeIssue !== key) return;
+    rule.panel.classList.add('open');
+    window.setTimeout(() => rule.input.focus({preventScroll:true}), 30);
+  });
+});
+
+function submitReference(key) {
+  const rule = archiveRules[key];
+  if (!rule || activeIssue !== key) return;
+  const value = normaliseReference(rule.input.value);
+  if (!value) {
+    rule.status.textContent = 'Reference required.';
+    return;
+  }
+  if (value === rule.answer) {
+    rule.status.textContent = rule.found;
+    rule.input.blur();
+    window.setTimeout(() => showIssue(rule.next), 620);
+  } else {
+    rule.status.textContent = 'No copy found under that reference.';
+  }
+}
+
+document.querySelectorAll('[data-submit-reference]').forEach(button => {
+  button.addEventListener('click', () => submitReference(button.dataset.submitReference));
+});
+Object.entries(archiveRules).forEach(([key, rule]) => {
+  rule.input.addEventListener('keydown', event => {
+    if (event.key === 'Enter') submitReference(key);
+  });
+});
 
 const bgMusic = document.getElementById('bgMusic');
 const musicToggle = document.getElementById('musicToggle');
@@ -814,9 +1100,7 @@ async function startBackgroundMusic() {
     await bgMusic.play();
     musicActivated = true;
     musicToggle.classList.add('ready');
-    if ('mediaSession' in navigator) {
-      navigator.mediaSession.playbackState = 'playing';
-    }
+    if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'playing';
   } catch (error) {
     musicToggle.classList.add('ready');
   }
@@ -865,17 +1149,12 @@ if ('mediaSession' in navigator) {
   } catch (error) {}
 }
 
-// Do not pause when the tab or window is hidden. If a desktop browser briefly
-// suspends playback, resume it when the document becomes active again.
 document.addEventListener('visibilitychange', () => {
-  if (!document.hidden && musicShouldPlay && bgMusic.paused) {
-    bgMusic.play().catch(() => {});
-  }
+  if (!document.hidden && musicShouldPlay && bgMusic.paused) bgMusic.play().catch(() => {});
 });
 window.addEventListener('pageshow', () => {
   if (musicShouldPlay && bgMusic.paused) bgMusic.play().catch(() => {});
 });
-
 </script>
 </body>
 </html>
