@@ -1482,6 +1482,134 @@ button{background:none;border:0;padding:0;-webkit-appearance:none;appearance:non
   .errata-row{grid-template-columns:60px minmax(0,1fr);gap:9px;padding:11px 1px;}
 }
 
+
+
+/* =========================================================
+   V6 DESKTOP RECOMPOSITION
+   Keep mobile readable; on wide screens, use one clear newspaper
+   hierarchy instead of nested mini-columns. Monochrome throughout.
+   ========================================================= */
+@media (min-width:1100px){
+  .archive-shell{
+    width:min(1320px,calc(100% - 64px));
+    padding-top:36px;
+  }
+  .newspaper{
+    padding:42px 56px 54px;
+  }
+  .masthead{
+    padding:14px 6px 13px;
+    margin-bottom:22px;
+  }
+  .paper-name{
+    font-size:clamp(54px,4.6vw,70px);
+  }
+  .lead{
+    padding:14px 6px 25px;
+  }
+  .lead h1{
+    max-width:1050px;
+    font-size:clamp(52px,4.7vw,68px);
+  }
+  .deck,.deck-ko{max-width:980px;}
+
+  /* Front page illustration: portrait + report + evidence, balanced as one spread. */
+  .front-visual-grid{
+    grid-template-columns:minmax(0,2.25fr) minmax(300px,.78fr);
+    gap:38px;
+    padding:30px 6px 34px;
+  }
+  .illustrated-story{
+    grid-template-columns:minmax(330px,.92fr) minmax(0,1.08fr);
+    gap:30px;
+    padding-right:34px;
+  }
+  .engraving-frame img{
+    aspect-ratio:4/5;
+    object-position:center 18%;
+  }
+  .evidence-figure{
+    width:100%;
+    max-width:330px;
+    justify-self:center;
+  }
+  .illustrated-copy h2{font-size:38px;}
+  .illustrated-copy p{font-size:16.5px;line-height:1.76;}
+
+  /* Only one structural two-column split on desktop. */
+  .news-grid{
+    grid-template-columns:minmax(0,1.42fr) minmax(330px,.82fr);
+    column-gap:46px;
+  }
+  .news-grid>.main-column{
+    padding-right:46px;
+    border-right:1px solid rgba(45,36,27,.62);
+  }
+  .news-grid>.side-column{padding-left:0;}
+  .news-grid .two-up{
+    display:block;
+  }
+  .news-grid .two-up>.news-block{
+    width:100%;
+  }
+  .news-grid .two-up>.news-block + .news-block{
+    margin-top:0;
+  }
+  .news-block{padding:29px 8px 32px;}
+  .side-column .news-block h3{font-size:27px;}
+  .side-column .news-block p{font-size:15.5px;line-height:1.72;}
+  .side-column .news-block .ko-news{font-size:14px;line-height:1.76;}
+
+  /* Archived issues read better with a slightly more even split. */
+  .newspaper.old .news-grid,.newspaper.older .news-grid{
+    grid-template-columns:minmax(0,1.18fr) minmax(360px,.82fr);
+  }
+
+  /* Classifieds retain playful period-advertising geometry without becoming four tiny columns. */
+  .classified-grid.advertising-chaos{
+    grid-template-columns:repeat(12,minmax(0,1fr));
+    gap:10px;
+    border:0;
+    align-items:stretch;
+  }
+  .classified-grid.advertising-chaos .classified{
+    border:1px solid rgba(43,36,29,.58)!important;
+    margin:0!important;
+    min-height:100%;
+    padding:17px 16px;
+  }
+  .classified-grid.advertising-chaos .ad-wanted{grid-column:span 7;}
+  .classified-grid.advertising-chaos .ad-patent{grid-column:span 5;}
+  .classified-grid.advertising-chaos .ad-medicine{grid-column:span 4;}
+  .classified-grid.advertising-chaos .ad-tailor{grid-column:span 8;}
+  .classified-grid.advertising-chaos .ad-lost{grid-column:span 5;}
+  .classified-grid.advertising-chaos .ad-carriage{grid-column:span 7;}
+  .classified-grid.advertising-chaos .ad-repairs{grid-column:span 7;}
+  .classified-grid.advertising-chaos .ad-agency{grid-column:span 5;}
+  .ad-medicine{border:4px double #2c251e!important;}
+
+  /* Errata is a reading table rather than an oversized empty strip. */
+  .errata-batch{
+    max-width:980px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  .errata-row{
+    grid-template-columns:110px minmax(0,1fr);
+    gap:18px;
+    padding:13px 8px;
+  }
+  .errata-ref{font-size:12px;}
+  .errata-text{font-size:15px;}
+  .editorial-correction{max-width:980px;margin-left:auto;margin-right:auto;}
+}
+
+@media (min-width:1450px){
+  .archive-shell{width:min(1380px,calc(100% - 96px));}
+  .newspaper{padding-left:64px;padding-right:64px;}
+  .front-visual-grid{grid-template-columns:minmax(0,2.35fr) minmax(310px,.72fr);}
+  .news-grid{grid-template-columns:minmax(0,1.48fr) minmax(340px,.78fr);}
+}
 </style>
 </head>
 <body>
@@ -1882,22 +2010,22 @@ button{background:none;border:0;padding:0;-webkit-appearance:none;appearance:non
 
             <div class="errata-batch">
               <div class="errata-batch-title">Sheet 41 · First Corrections</div>
-              <div class="errata-row"><div class="errata-ref">p.2 · col.III</div><div class="errata-text"><span class="print-word">catalogaue</span><span class="print-arrow">→</span><span class="print-word">catalogue</span>, in the list of seized workshop papers.<span class="ko-mini">압수된 작업장 문서 목록의 철자를 위와 같이 바로잡는다.</span></div></div>
-              <div class="errata-row"><div class="errata-ref">p.2 · col.V</div><div class="errata-text"><span class="print-word">witnesss</span><span class="print-arrow">→</span><span class="print-word">witness</span>, in the Bow Street report.<span class="ko-mini">보 스트리트 심리 기사에서 잘못 인쇄된 단어를 정정한다.</span></div></div>
-              <div class="errata-row"><div class="errata-ref">p.3 · col.I</div><div class="errata-text"><span class="print-word">lockhsmith</span><span class="print-arrow">→</span><span class="print-word">locksmith</span>, beneath the workshop notice.<span class="ko-mini">작업장 공고 아래의 조판 오류를 바로잡는다.</span></div></div>
+              <div class="errata-row"><div class="errata-ref">p.2 · col.III</div><div class="errata-text"><span class="print-word">cAtalogue</span><span class="print-arrow">→</span><span class="print-word">catalogue</span>, in the list of seized workshop papers.<span class="ko-mini">압수된 작업장 문서 목록의 철자를 위와 같이 바로잡는다.</span></div></div>
+              <div class="errata-row"><div class="errata-ref">p.2 · col.V</div><div class="errata-text"><span class="print-word">witneSs</span><span class="print-arrow">→</span><span class="print-word">witness</span>, in the Bow Street report.<span class="ko-mini">보 스트리트 심리 기사에서 잘못 인쇄된 단어를 정정한다.</span></div></div>
+              <div class="errata-row"><div class="errata-ref">p.3 · col.I</div><div class="errata-text"><span class="print-word">tHread</span><span class="print-arrow">→</span><span class="print-word">thread</span>, in the locksmith’s materials inventory.<span class="ko-mini">작업장 공고 아래의 조판 오류를 바로잡는다.</span></div></div>
             </div>
 
             <div class="errata-batch">
               <div class="errata-batch-title">Sheet 42 · Late Corrections</div>
-              <div class="errata-row"><div class="errata-ref">p.3 · col.IV</div><div class="errata-text"><span class="print-word">doccument</span><span class="print-arrow">→</span><span class="print-word">document</span>, in the evidence index notice.<span class="ko-mini">증거 색인 공고의 조판 오류를 바로잡는다.</span></div></div>
-              <div class="errata-row"><div class="errata-ref">p.4 · col.II</div><div class="errata-text"><span class="print-word">watermrark</span><span class="print-arrow">→</span><span class="print-word">watermark</span>, in the paper manufacturer's statement.<span class="ko-mini">제지업체 진술 기사에서 잘못 인쇄된 단어를 정정한다.</span></div></div>
-              <div class="errata-row"><div class="errata-ref">p.4 · col.IV</div><div class="errata-text"><span class="print-word">prooperty</span><span class="print-arrow">→</span><span class="print-word">property</span>, in a sale-room notice.<span class="ko-mini">매각장 공고의 오탈자를 바로잡는다.</span></div></div>
+              <div class="errata-row"><div class="errata-ref">p.3 · col.IV</div><div class="errata-text"><span class="print-word">doCument</span><span class="print-arrow">→</span><span class="print-word">document</span>, in the evidence index notice.<span class="ko-mini">증거 색인 공고의 조판 오류를 바로잡는다.</span></div></div>
+              <div class="errata-row"><div class="errata-ref">p.4 · col.II</div><div class="errata-text"><span class="print-word">waRrant</span><span class="print-arrow">→</span><span class="print-word">warrant</span>, in the magistrate’s notice.<span class="ko-mini">제지업체 진술 기사에서 잘못 인쇄된 단어를 정정한다.</span></div></div>
+              <div class="errata-row"><div class="errata-ref">p.4 · col.IV</div><div class="errata-text"><span class="print-word">prOperty</span><span class="print-arrow">→</span><span class="print-word">property</span>, in a sale-room notice.<span class="ko-mini">매각장 공고의 오탈자를 바로잡는다.</span></div></div>
             </div>
 
             <div class="errata-batch">
               <div class="errata-batch-title">Sheet 43 · Final Corrections</div>
-              <div class="errata-row"><div class="errata-ref">p.5 · col.I</div><div class="errata-text"><span class="print-word">offficer</span><span class="print-arrow">→</span><span class="print-word">officer</span>, in the police clerk's statement.<span class="ko-mini">경찰 서기 진술 기사에서 잘못 들어간 글자를 정정한다.</span></div></div>
-              <div class="errata-row"><div class="errata-ref">p.5 · col.VI</div><div class="errata-text"><span class="print-word">esttate</span><span class="print-arrow">→</span><span class="print-word">estate</span>, in the closing auction column.<span class="ko-mini">경매란 마지막 줄의 조판 오류를 바로잡는다.</span></div></div>
+              <div class="errata-row"><div class="errata-ref">p.5 · col.I</div><div class="errata-text"><span class="print-word">ofFicer</span><span class="print-arrow">→</span><span class="print-word">officer</span>, in the police clerk's statement.<span class="ko-mini">경찰 서기 진술 기사에서 잘못 들어간 글자를 정정한다.</span></div></div>
+              <div class="errata-row"><div class="errata-ref">p.5 · col.VI</div><div class="errata-text"><span class="print-word">esTate</span><span class="print-arrow">→</span><span class="print-word">estate</span>, in the closing auction column.<span class="ko-mini">경매란 마지막 줄의 조판 오류를 바로잡는다.</span></div></div>
             </div>
 
             <div class="editorial-correction">
