@@ -1802,6 +1802,97 @@ button{background:none;border:0;padding:0;-webkit-appearance:none;appearance:non
   .slot-box{height:31px;font-size:20px;}
 }
 
+
+
+/* =========================================================
+   V11 CURRENT FRONT PAGE — TRUE DESKTOP BALANCE
+   The top illustrated lead now owns the full width; there is no
+   ghost second column after the seal evidence was moved below.
+   On desktop the seal evidence itself is physically moved to the
+   right rail, so both columns carry comparable visual weight.
+   ========================================================= */
+@media (min-width:760px){
+  #issueCurrent .front-visual-grid{
+    grid-template-columns:minmax(0,1fr)!important;
+    gap:0!important;
+  }
+  #issueCurrent .illustrated-story{
+    padding-right:0!important;
+    border-right:0!important;
+    width:100%;
+  }
+}
+@media (min-width:980px){
+  #issueCurrent .front-visual-grid{
+    padding-left:6px;
+    padding-right:6px;
+  }
+  #issueCurrent .illustrated-story{
+    display:grid!important;
+    grid-template-columns:minmax(280px,.62fr) minmax(0,1.38fr)!important;
+    gap:42px!important;
+    align-items:start;
+  }
+  #issueCurrent .engraving-frame img{
+    aspect-ratio:4/5;
+    object-position:center 18%;
+  }
+  #issueCurrent .news-grid{
+    grid-template-columns:minmax(0,1.04fr) minmax(0,.96fr)!important;
+    column-gap:38px!important;
+    align-items:start;
+  }
+  #issueCurrent .news-grid>.main-column{
+    padding-right:38px!important;
+    border-right:1px solid rgba(45,36,27,.62)!important;
+  }
+  #issueCurrent .news-grid>.side-column{
+    padding-left:0!important;
+    min-width:0;
+  }
+  #issueCurrent .side-column>.seal-evidence-story{
+    padding-top:0;
+    margin-top:0;
+    border-top:0;
+  }
+  #issueCurrent .seal-evidence-story .figure-title{
+    display:none;
+  }
+  #issueCurrent .side-column .seal-evidence-story .evidence-figure{
+    width:min(100%,340px);
+    max-width:340px;
+    margin:14px auto 16px;
+  }
+  #issueCurrent .side-column .seal-evidence-story .evidence-frame{
+    width:100%;
+  }
+  #issueCurrent .side-column .seal-evidence-story>p{
+    font-size:15.5px;
+    line-height:1.72;
+  }
+  #issueCurrent .side-column .seal-evidence-story>.ko-news{
+    font-size:14px;
+    line-height:1.76;
+  }
+  #issueCurrent .side-column>.seal-evidence-story + .news-block{
+    border-top:4px double #2c251e;
+    margin-top:4px;
+  }
+}
+@media (min-width:1450px){
+  #issueCurrent .illustrated-story{
+    grid-template-columns:minmax(320px,.64fr) minmax(0,1.36fr)!important;
+    gap:48px!important;
+  }
+  #issueCurrent .news-grid{
+    grid-template-columns:minmax(0,1.06fr) minmax(0,.94fr)!important;
+    column-gap:42px!important;
+  }
+  #issueCurrent .news-grid>.main-column{
+    padding-right:42px!important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1934,7 +2025,8 @@ button{background:none;border:0;padding:0;-webkit-appearance:none;appearance:non
 </section>
 <div class="news-grid">
 <div class="main-column">
-<section class="news-block">
+<span id="sealHomeAnchor" hidden></span>
+<section class="news-block seal-evidence-story" id="sealEvidenceStory">
 <div class="news-meta">From the First Theft · Evidence</div>
 <h3>The Mark Left Behind</h3>
 <span class="title-ko">첫 도난 현장에 남겨진 표식</span>
@@ -1946,9 +2038,6 @@ button{background:none;border:0;padding:0;-webkit-appearance:none;appearance:non
 <figcaption class="figure-cap">Police reproduction of the wax impression recovered from the first empty case.
                 <span class="figure-cap-ko">첫 번째 빈 진열장에서 회수된 왁스 실링의 경찰 촬영본을 흑백으로 재현.</span>
 </figcaption>
-<div class="evidence-copy">No maker's mark has been identified. Several heraldry enthusiasts have nevertheless written to the Chronicle with eight mutually incompatible answers.
-                <span class="ko-news">제작자 표식은 아직 확인되지 않았다. 그럼에도 문장학 애호가들은 본지에 서로 양립할 수 없는 해답 여덟 가지를 보내왔다.</span>
-</div>
 </figure>
 <p>Police continue to treat the red wax impression from Night’s first theft as their clearest physical clue. No maker’s mark has been identified, though amateur heralds have sent the Chronicle enough mutually incompatible theories to fill a parlour wall.</p>
 <span class="ko-news">경찰은 여전히 첫 범행 현장에 남겨진 붉은 왁스 실링을 가장 뚜렷한 물적 단서로 보고 있다. 제작자 표식은 아직 확인되지 않았지만, 아마추어 문장학자들은 서로 양립할 수 없는 설을 응접실 벽이 찰 만큼 본지로 보내고 있다.</span>
@@ -2701,6 +2790,32 @@ document.addEventListener('visibilitychange', () => {
 window.addEventListener('pageshow', () => {
   if (musicShouldPlay && bgMusic.paused) bgMusic.play().catch(() => {});
 });
+
+
+// V11: on desktop the first-theft seal belongs to the right rail;
+// on mobile/tablet it returns to its original chronological position.
+const sealEvidenceStory = document.getElementById('sealEvidenceStory');
+const sealHomeAnchor = document.getElementById('sealHomeAnchor');
+const currentIssueSideColumn = document.querySelector('#issueCurrent .side-column');
+const currentDesktopLayout = window.matchMedia('(min-width:980px)');
+
+function placeCurrentSealEvidence() {
+  if (!sealEvidenceStory || !sealHomeAnchor || !currentIssueSideColumn) return;
+  if (currentDesktopLayout.matches) {
+    if (sealEvidenceStory.parentElement !== currentIssueSideColumn || currentIssueSideColumn.firstElementChild !== sealEvidenceStory) {
+      currentIssueSideColumn.prepend(sealEvidenceStory);
+    }
+  } else {
+    if (sealEvidenceStory.previousElementSibling !== sealHomeAnchor) {
+      sealHomeAnchor.insertAdjacentElement('afterend', sealEvidenceStory);
+    }
+  }
+}
+
+placeCurrentSealEvidence();
+if (currentDesktopLayout.addEventListener) currentDesktopLayout.addEventListener('change', placeCurrentSealEvidence);
+else if (currentDesktopLayout.addListener) currentDesktopLayout.addListener(placeCurrentSealEvidence);
+
 </script>
 </body>
 </html>
